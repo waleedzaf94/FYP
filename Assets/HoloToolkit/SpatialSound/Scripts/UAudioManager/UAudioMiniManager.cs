@@ -15,9 +15,9 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void PlayAll()
         {
-            for (int i = 0; i < Events.Length; i++)
+            for (int i = 0; i < events.Length; i++)
             {
-                PlayEvent(this.Events[i]);
+                PlayEvent(this.events[i]);
             }
         }
 
@@ -27,21 +27,21 @@ namespace HoloToolkit.Unity
         /// <param name="audioEvent">The MiniAudioEvent to play</param>
         private void PlayEvent(MiniAudioEvent audioEvent)
         {
-            if (audioEvent.PrimarySource == null)
+            if (audioEvent.primarySource == null)
             {
-                Debug.LogErrorFormat(this, "Emitter on object \"{0}\" is null! Cannot play sound.", audioEvent.Name);
+                Debug.LogErrorFormat(this, "Emitter on object \"{0}\" is null! Cannot play sound.", audioEvent.name);
                 return;
             }
 
             if (audioEvent.IsContinuous())
             {
-                if (audioEvent.SecondarySource == null)
+                if (audioEvent.secondarySource == null)
                 {
-                    Debug.LogErrorFormat(this, "Secondary emitter on event \"{0}\" is null! Cannot play continuous sound.", audioEvent.Name);
+                    Debug.LogErrorFormat(this, "Secondary emitter on event \"{0}\" is null! Cannot play continuous sound.", audioEvent.name);
                 }
             }
 
-            ActiveEvent tempEvent = new ActiveEvent(audioEvent, audioEvent.PrimarySource.gameObject, audioEvent.PrimarySource, audioEvent.SecondarySource);
+            ActiveEvent tempEvent = new ActiveEvent(audioEvent, audioEvent.primarySource.gameObject, audioEvent.primarySource, audioEvent.secondarySource);
 
             // Do this last. The base class owns this event once we pass it to PlayContainer, and may dispose it if it cannot be played.
             PlayContainer(tempEvent);
@@ -52,9 +52,9 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void SetMute(bool mute)
         {
-            for (int i = 0; i < Events.Length; i++)
+            for (int i = 0; i < events.Length; i++)
             {
-                Events[i].PrimarySource.mute = mute;
+                events[i].primarySource.mute = mute;
             }
         }
 
@@ -70,9 +70,9 @@ namespace HoloToolkit.Unity
                 return;
             }
 
-            for (int i = 0; i < this.Events.Length; i++)
+            for (int i = 0; i < this.events.Length; i++)
             {
-                Events[i].PrimarySource.pitch = newPitch;
+                events[i].primarySource.pitch = newPitch;
             }
         }
     }

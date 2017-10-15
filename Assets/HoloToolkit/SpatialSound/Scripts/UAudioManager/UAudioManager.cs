@@ -35,10 +35,17 @@ namespace HoloToolkit.Unity
         /// </summary>
         private Dictionary<string, AudioEvent> eventsDictionary;
 
-        private static UAudioManager instance;
+        private static UAudioManager _Instance;
         public static UAudioManager Instance
         {
-            get { return instance ?? (instance = FindObjectOfType<UAudioManager>()); }
+            get
+            {
+                if (_Instance == null)
+                {
+                    _Instance = FindObjectOfType<UAudioManager>();
+                }
+                return _Instance;
+            }
         }
 
         protected new void Awake()
@@ -94,12 +101,10 @@ namespace HoloToolkit.Unity
             {
                 return;
             }
-
             emitter = ApplyAudioEmitterTransform(emitter);
-
             if (emitter == null)
             {
-                //if emitter is null, use the uAudioManager GameObject(2dSound)
+                //if emitter is null, use the uaudiomanager gameobject(2dsound)
                 emitter = gameObject;
             }
 
@@ -118,9 +123,9 @@ namespace HoloToolkit.Unity
             }
 
             // If the instance limit has been reached...
-            if (currentEvent.InstanceLimit != 0 && GetInstances(eventName) >= currentEvent.InstanceLimit)
+            if (currentEvent.instanceLimit != 0 && GetInstances(eventName) >= currentEvent.instanceLimit)
             {
-                if (currentEvent.AudioEventInstanceBehavior == AudioEventInstanceBehavior.KillNewest)
+                if (currentEvent.instanceBehavior == AudioEventInstanceBehavior.KillNewest)
                 {
                     // Do not play the event.
                     Debug.LogFormat(this, "Instance limit reached, not playing event \"{0}\"", eventName);
@@ -174,13 +179,13 @@ namespace HoloToolkit.Unity
         /// <param name="fadeOutTime"></param>
         public void StopEventsOnGameObject(string eventName, GameObject gameObjectToStop, float fadeOutTime = 0f)
         {
-            for (int i = ActiveEvents.Count - 1; i >= 0; i--)
+            for (int i = activeEvents.Count - 1; i >= 0; i--)
             {
-                ActiveEvent activeEvent = ActiveEvents[i];
+                ActiveEvent activeEvent = activeEvents[i];
 
                 if (activeEvent.AudioEmitter == gameObjectToStop)
                 {
-                    StopEvent(activeEvent.AudioEvent.Name, gameObjectToStop, fadeOutTime);
+                    StopEvent(activeEvent.audioEvent.name, gameObjectToStop, fadeOutTime);
                 }
             }
         }
@@ -194,11 +199,11 @@ namespace HoloToolkit.Unity
         public void StopAllEvents(string eventName, GameObject emitter = null, float fadeOutTime = 0f)
         {
 
-            for (int i = ActiveEvents.Count - 1; i >= 0; i--)
+            for (int i = activeEvents.Count - 1; i >= 0; i--)
             {
-                ActiveEvent activeEvent = ActiveEvents[i];
+                ActiveEvent activeEvent = activeEvents[i];
 
-                if (activeEvent.AudioEvent.Name == eventName)
+                if (activeEvent.audioEvent.name == eventName)
                 {
                     if (fadeOutTime > 0)
                     {
@@ -206,7 +211,7 @@ namespace HoloToolkit.Unity
                     }
                     else
                     {
-                        StartCoroutine(StopEventWithFadeCoroutine(activeEvent, activeEvent.AudioEvent.FadeOutTime));
+                        StartCoroutine(StopEventWithFadeCoroutine(activeEvent, activeEvent.audioEvent.fadeOutTime));
                     }
                 }
             }
@@ -218,7 +223,7 @@ namespace HoloToolkit.Unity
         /// <param name="fadeOutTime">The amount of time in seconds to completely fade out the sound.</param>
         public void StopAll(GameObject emitter = null, float fadeOutTime = 0f)
         {
-            foreach (ActiveEvent activeEvent in ActiveEvents)
+            foreach (ActiveEvent activeEvent in activeEvents)
             {
                 if (fadeOutTime > 0)
                 {
@@ -226,7 +231,7 @@ namespace HoloToolkit.Unity
                 }
                 else
                 {
-                    StartCoroutine(StopEventWithFadeCoroutine(activeEvent, activeEvent.AudioEvent.FadeOutTime));
+                    StartCoroutine(StopEventWithFadeCoroutine(activeEvent, activeEvent.audioEvent.fadeOutTime));
                 }
             }
         }
@@ -248,11 +253,11 @@ namespace HoloToolkit.Unity
                 emitter = gameObject;
             }
 
-            for (int i = ActiveEvents.Count - 1; i >= 0; i--)
+            for (int i = activeEvents.Count - 1; i >= 0; i--)
             {
-                ActiveEvent activeEvent = ActiveEvents[i];
+                ActiveEvent activeEvent = activeEvents[i];
 
-                if (activeEvent.AudioEvent.Name == eventName && activeEvent.AudioEmitter == emitter)
+                if (activeEvent.audioEvent.name == eventName && activeEvent.AudioEmitter == emitter)
                 {
                     //if there's no fade specified, use the fade stored in the event
                     if (fadeOutTime > 0f)
@@ -261,7 +266,7 @@ namespace HoloToolkit.Unity
                     }
                     else
                     {
-                        StartCoroutine(StopEventWithFadeCoroutine(activeEvent, ActiveEvents[i].AudioEvent.FadeOutTime));
+                        StartCoroutine(StopEventWithFadeCoroutine(activeEvent, activeEvents[i].audioEvent.fadeOutTime));
 
                     }
                 }
@@ -281,10 +286,10 @@ namespace HoloToolkit.Unity
                 return;
             }
 
-            for (int i = ActiveEvents.Count - 1; i >= 0; i--)
+            for (int i = activeEvents.Count - 1; i >= 0; i--)
             {
-                ActiveEvent activeEvent = ActiveEvents[i];
-                if (activeEvent.AudioEvent.Name == eventName)
+                ActiveEvent activeEvent = activeEvents[i];
+                if (activeEvent.audioEvent.name == eventName)
                 {
                     activeEvent.SetPitch(newPitch);
                 }
@@ -312,7 +317,7 @@ namespace HoloToolkit.Unity
                 return;
             }
 
-            currentEvent.Container.LoopTime = newLoopTime;
+            currentEvent.container.loopTime = newLoopTime;
         }
 
         /// <summary>
@@ -330,15 +335,15 @@ namespace HoloToolkit.Unity
                 return;
             }
 
-            for (int i = 0; i < ActiveEvents.Count; i++)
+            for (int i = 0; i < activeEvents.Count; i++)
             {
-                ActiveEvent activeEvent = ActiveEvents[i];
+                ActiveEvent activeEvent = activeEvents[i];
 
-                if (ActiveEvents[i].AudioEvent.Name == eventName && ActiveEvents[i].AudioEmitter == emitter)
+                if (activeEvents[i].audioEvent.name == eventName && activeEvents[i].AudioEmitter == emitter)
                 {
-                    activeEvent.VolDest = volume;
-                    activeEvent.AltVolDest = volume;
-                    activeEvent.CurrentFade = 0;
+                    activeEvent.volDest = volume;
+                    activeEvent.altVolDest = volume;
+                    activeEvent.currentFade = 0;
                 }
             }
         }
@@ -387,7 +392,7 @@ namespace HoloToolkit.Unity
         /// the oldest event will be stopped to allow a new event to be played.</remarks>
         private bool CanPlayNewEvent()
         {
-            if (globalEventInstanceLimit == 0 || ActiveEvents.Count < globalEventInstanceLimit)
+            if (globalEventInstanceLimit == 0 || activeEvents.Count < globalEventInstanceLimit)
             {
                 return true;
             }
@@ -395,7 +400,7 @@ namespace HoloToolkit.Unity
             {
                 if (globalInstanceBehavior == AudioEventInstanceBehavior.KillOldest)
                 {
-                    StopEvent(ActiveEvents[0]);
+                    StopEvent(activeEvents[0]);
                     return true;
                 }
                 else
@@ -411,11 +416,11 @@ namespace HoloToolkit.Unity
         /// <param name="eventName">The name associated with the AudioEvent to stop.</param>
         private void KillOldestInstance(string eventName)
         {
-            for (int i = 0; i < ActiveEvents.Count; i++)
+            for (int i = 0; i < activeEvents.Count; i++)
             {
-                ActiveEvent tempEvent = ActiveEvents[i];
+                ActiveEvent tempEvent = activeEvents[i];
 
-                if (tempEvent.AudioEvent.Name == eventName)
+                if (tempEvent.audioEvent.name == eventName)
                 {
                     StopEvent(tempEvent);
                     return;
@@ -445,12 +450,12 @@ namespace HoloToolkit.Unity
         /// </summary>
         private void CreateEventsDictionary()
         {
-            eventsDictionary = new Dictionary<string, AudioEvent>(Events.Length);
+            eventsDictionary = new Dictionary<string, AudioEvent>(events.Length);
 
-            for (int i = 0; i < Events.Length; i++)
+            for (int i = 0; i < events.Length; i++)
             {
-                AudioEvent tempEvent = Events[i];
-                eventsDictionary.Add(tempEvent.Name, tempEvent);
+                AudioEvent tempEvent = events[i];
+                eventsDictionary.Add(tempEvent.name, tempEvent);
             }
         }
 
@@ -458,7 +463,7 @@ namespace HoloToolkit.Unity
         [ContextMenu("Sort Events")]
         private void AlphabetizeEventList()
         {
-            Array.Sort<AudioEvent>(Events);
+            Array.Sort<AudioEvent>(events);
         }
 #endif
     }

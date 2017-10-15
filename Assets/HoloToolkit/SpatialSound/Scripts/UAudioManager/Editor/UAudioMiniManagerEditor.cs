@@ -10,7 +10,7 @@ namespace HoloToolkit.Unity
     {
         private void OnEnable()
         {
-            this.MyTarget = (UAudioMiniManager)target;
+            this.myTarget = (UAudioMiniManager)target;
             SetUpEditor();
         }
 

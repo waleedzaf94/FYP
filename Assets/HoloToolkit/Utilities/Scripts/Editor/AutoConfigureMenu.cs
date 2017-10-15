@@ -2,75 +2,53 @@
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
 using UnityEditor;
-using UnityEditor.Build;
 using UnityEngine;
 
 namespace HoloToolkit.Unity
 {
     /// <summary>
     /// Configuration options derived from here: 
-    /// TODO: Update URL below
     /// https://developer.microsoft.com/en-us/windows/holographic/unity_development_overview#Configuring_a_Unity_project_for_HoloLens
     /// </summary>
-    public class AutoConfigureMenu
-#if UNITY_2017_1_OR_NEWER
-        : IActiveBuildTargetChanged
-#endif
+    public class AutoConfigureMenu : MonoBehaviour
     {
-#if UNITY_2017_1_OR_NEWER
-        public delegate void BuildTargetArgs(BuildTarget newTarget);
-        public static event BuildTargetArgs ActiveBuildTargetChanged;
-#endif
-
         /// <summary>
         /// Displays a help page for the HoloToolkit.
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Configure/Show Help", false, 3)]
+        [MenuItem("HoloToolkit/Configure/Show Help", false, 3)]
         public static void ShowHelp()
         {
-            Application.OpenURL("https://github.com/Microsoft/MixedRealityToolkit-Unity/wiki");
+            Application.OpenURL("https://github.com/Microsoft/HoloToolkit-Unity/wiki");
         }
 
         /// <summary>
         /// Applies recommended scene settings to the current scenes
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Configure/Apply Mixed Reality Scene Settings", false, 1)]
-        public static void ShowSceneSettingsWindow()
+        [MenuItem("HoloToolkit/Configure/Apply HoloLens Scene Settings", false, 1)]
+        public static void ApplySceneSettings()
         {
-            var window = (SceneSettingsWindow)EditorWindow.GetWindow(typeof(SceneSettingsWindow), true, "Apply Mixed Reality Scene Settings");
+            SceneSettingsWindow window = (SceneSettingsWindow)EditorWindow.GetWindow(typeof(SceneSettingsWindow), true, "Apply HoloLens Scene Settings");
             window.Show();
         }
 
         /// <summary>
         /// Applies recommended project settings to the current project
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Configure/Apply Mixed Reality Project Settings", false, 0)]
-        public static void ShowProjectSettingsWindow()
+        [MenuItem("HoloToolkit/Configure/Apply HoloLens Project Settings", false, 1)]
+        public static void ApplyProjectSettings()
         {
-            var window = (ProjectSettingsWindow)EditorWindow.GetWindow(typeof(ProjectSettingsWindow), true, "Apply Mixed Reality Project Settings");
+            ProjectSettingsWindow window = (ProjectSettingsWindow)EditorWindow.GetWindow(typeof(ProjectSettingsWindow), true, "Apply HoloLens Project Settings");
             window.Show();
         }
 
         /// <summary>
         /// Applies recommended capability settings to the current project
         /// </summary>
-        [MenuItem("Mixed Reality Toolkit/Configure/Apply UWP Capability Settings", false, 2)]
-        public static void ShowCapabilitySettingsWindow()
+        [MenuItem("HoloToolkit/Configure/Apply HoloLens Capability Settings", false, 2)]
+        static void ApplyHoloLensCapabilitySettings()
         {
-            var window = (CapabilitySettingsWindow)EditorWindow.GetWindow(typeof(CapabilitySettingsWindow), true, "Apply UWP Capability Settings");
+            CapabilitySettingsWindow window = (CapabilitySettingsWindow)EditorWindow.GetWindow(typeof(CapabilitySettingsWindow), true, "Apply HoloLens Capability Settings");
             window.Show();
         }
-
-#if UNITY_2017_1_OR_NEWER
-        public int callbackOrder { get; private set; }
-
-        public void OnActiveBuildTargetChanged(BuildTarget previousTarget, BuildTarget newTarget)
-        {
-            if (ActiveBuildTargetChanged != null)
-            {
-                ActiveBuildTargetChanged.Invoke(newTarget);
-            }
-        }
-#endif
     }
 }

@@ -13,8 +13,7 @@ namespace HoloToolkit.Unity
     /// </summary>
     public abstract class AutoConfigureWindow<TSetting> : EditorWindow
     {
-        #region Member Fields
-
+        #region Member Variables
         private Dictionary<TSetting, bool> values = new Dictionary<TSetting, bool>();
         private Dictionary<TSetting, string> names = new Dictionary<TSetting, string>();
         private Dictionary<TSetting, string> descriptions = new Dictionary<TSetting, string>();
@@ -22,40 +21,24 @@ namespace HoloToolkit.Unity
         private string statusMessage = string.Empty;
         private Vector2 scrollPosition = Vector2.zero;
         private GUIStyle wrapStyle;
-
-        #endregion // Member Fields
+        #endregion // Member Variables
 
         #region Internal Methods
-
         private void SettingToggle(TSetting setting)
         {
-            EditorGUI.BeginChangeCheck();
-
             // Draw and update setting flag
             values[setting] = GUILayout.Toggle(values[setting], new GUIContent(names[setting]));
 
-            if (EditorGUI.EndChangeCheck())
-            {
-                OnGuiChanged();
-            }
-
             // If this control is the one under the mouse, update the status message
-            if (Event.current.type == EventType.Repaint && GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition))
+            if ((Event.current.type == EventType.Repaint) && (GUILayoutUtility.GetLastRect().Contains(Event.current.mousePosition)))
             {
                 StatusMessage = descriptions[setting];
                 Repaint();
             }
         }
-
-        /// <summary>
-        /// Gets or sets the status message displayed at the bottom of the window.
-        /// </summary>
-        private string StatusMessage { get { return statusMessage; } set { statusMessage = value; } }
-
         #endregion // Internal Methods
 
         #region Overridables / Event Triggers
-
         /// <summary>
         /// Called when settings should be applied.
         /// </summary>
@@ -70,28 +53,16 @@ namespace HoloToolkit.Unity
         /// Called when string names and descriptions should be loaded.
         /// </summary>
         protected abstract void LoadStrings();
-
-        /// <summary>
-        /// Called when a toggle has been flipped and a change has been detected.
-        /// </summary>
-        protected abstract void OnGuiChanged();
-
         #endregion // Overridables / Event Triggers
 
         #region Overrides / Event Handlers
-
         /// <summary>
         /// Called when the window is created.
         /// </summary>
         protected virtual void Awake()
         {
-            wrapStyle = new GUIStyle("label")
-            {
-                wordWrap = true,
-                richText = true
-            };
+            wrapStyle = new GUIStyle() { wordWrap = true };
         }
-
         protected virtual void OnEnable()
         {
             LoadStrings();
@@ -132,17 +103,16 @@ namespace HoloToolkit.Unity
             if (applyClicked)
             {
                 ApplySettings();
+                Close();
             }
         }
-
         #endregion // Overrides / Event Handlers
 
-        #region Protected Properties
-
+        #region Public Properties
         /// <summary>
         /// Gets the descriptions of the settings.
         /// </summary>
-        protected Dictionary<TSetting, string> Descriptions
+        public Dictionary<TSetting, string> Descriptions
         {
             get
             {
@@ -158,7 +128,7 @@ namespace HoloToolkit.Unity
         /// <summary>
         /// Gets the names of the settings.
         /// </summary>
-        protected Dictionary<TSetting, string> Names
+        public Dictionary<TSetting, string> Names
         {
             get
             {
@@ -174,7 +144,7 @@ namespace HoloToolkit.Unity
         /// <summary>
         /// Gets the values of the settings.
         /// </summary>
-        protected Dictionary<TSetting, bool> Values
+        public Dictionary<TSetting, bool> Values
         {
             get
             {
@@ -187,6 +157,10 @@ namespace HoloToolkit.Unity
             }
         }
 
-        #endregion // Protected Properties
+        /// <summary>
+        /// Gets or sets the status message displayed at the bottom of the window.
+        /// </summary>
+        public string StatusMessage { get { return statusMessage; } set { statusMessage = value; } }
+        #endregion // Public Properties
     }
 }

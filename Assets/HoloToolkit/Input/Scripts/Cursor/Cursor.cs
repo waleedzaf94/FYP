@@ -167,7 +167,7 @@ namespace HoloToolkit.Unity.InputModule
 
         private void Start()
         {
-            gazeManager = new GazeManager();
+            gazeManager = GazeManager.Instance;
             RegisterManagers();
         }
 

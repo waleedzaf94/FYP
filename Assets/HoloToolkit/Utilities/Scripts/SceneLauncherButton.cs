@@ -1,9 +1,10 @@
 ﻿// Copyright (c) Microsoft Corporation. All rights reserved.
 // Licensed under the MIT License. See LICENSE in the project root for license information.
 
+using System;
+using HoloToolkit.Unity.InputModule;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using HoloToolkit.Unity.InputModule;
 
 namespace HoloToolkit.Unity
 {
@@ -22,10 +23,6 @@ namespace HoloToolkit.Unity
 
         public Color HighlightedTextColor;
 
-        public GameObject MenuReference;
-
-        public bool EnableDebug;
-
         private TextMesh textMesh;
         private Color originalTextColor;
 
@@ -38,7 +35,7 @@ namespace HoloToolkit.Unity
 
         private void Update()
         {
-            IsHighlighted = GazeManager.Instance.HitObject == gameObject;
+            IsHighlighted = GazeManager.Instance.HitObject == this.gameObject;
         }
 
         private bool IsHighlighted
@@ -51,13 +48,8 @@ namespace HoloToolkit.Unity
 
         public void OnInputClicked(InputClickedEventData eventData)
         {
-            if (EnableDebug)
-            {
-                Debug.LogFormat("SceneLauncher: Loading scene {0}: {1}", SceneIndex, SceneManager.GetSceneAt(SceneIndex).name);
-            }
-
-            MenuReference.SetActive(false);
-            SceneManager.LoadSceneAsync(SceneIndex, LoadSceneMode.Single);
+            Debug.LogFormat("SceneLauncher: Loading scene {0}: {1}", SceneIndex, SceneList.Instance.GetSceneNames()[SceneIndex]);
+            SceneManager.LoadScene(SceneIndex, LoadSceneMode.Single);
         }
     }
 }

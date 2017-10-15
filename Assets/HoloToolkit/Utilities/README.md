@@ -29,12 +29,12 @@ Creates a menu allowing you to jump to any scene in your project.
 
 To run the SceneLauncher:
 
-1. In Unity > File  Build Settings > Scenes in Build, drag in the scene files that you would like to run.
+1) In Unity > File  Build Settings > Scenes in Build, drag in the scene files that you would like to run.
     *  If you would like to use all scenes in the project, search for t:Scene in the Project tab, select all, and drag all scenes into Scenes in Build.
-2. After adding scenes to the build, you can use the Scene Mapping setting in the SceneLauncher prefab to control which scenes are included or not included in the SceneLauncher menu.
-3. Build and run your project. (Or open the SceneLauncher scene and hit Play in the Unity editor.) A grid will be created with a button for each of your scenes.
-4. Air tap a scene to load it.
-5. When finished with a scene, say "Scene Launcher" or press the Backspace key to return the the scene list.
+2) Make sure that SceneLauncher is the first scene (#0).
+3) Build and run your project. (Or open the SceneLauncher scene and hit Play in the Unity editor.) A grid will be created with a button for each of your scenes.
+4) Air tap a scene to load it.
+5) When finished with a scene, say "Scene Launcher" or press the Backspace key to return the the scene list.
 
 ### [Scripts](Scripts)
 ---
@@ -123,9 +123,6 @@ TODO: Remove if reduncatnt to InterpolatedVector3.cs
 
 ---
 
-#### ApplicationViewManager.cs
-Switchs app to a XAML page vaiew, and waits for a return value from it.
-
 #### Billboard.cs
 Rotates a hologram so it is always facing towards the camera.
 
@@ -212,17 +209,47 @@ Wrapper around world anchor store to streamline some of the persistence api busy
 ### [Shaders](Shaders)
 ---
 
-#### macro.cginc
-Preprocessor macros to support shaders
+#### FastConfigurable.shader
+Very fast shader that uses the Unity light system.  Compiles down to only performing the operations you're actually using.  Uses material property drawers rather than a custom editor for ease of maintenance.
 
 #### HoloToolkitCommon.cginc
 Common shader functionality
 
-#### FastConfigurable.shader
-Very fast shader that uses the Unity light system.  Compiles down to only performing the operations you're actually using.  Uses material property drawers rather than a custom editor for ease of maintenance.
+#### LambertianConfigurable.cginc
+Code shared between LambertianConfigurable.shader and LambertianConfigurableTransparent.shader.
 
-#### FastConfigurable2Sided.shader
-Similar attributes for FastConfigurable with the benefit of 2 sides!
+#### LambertianConfigurable.shader
+Feature configurable per-pixel lambertian shader.  Use when higher quality lighting is desired, but specular highlights are not needed.
+
+#### LambertianConfigurableTransparent.shader
+Feature configurable per-pixel lambertian transparent shader.  Use when higher quality lighting and transparency are desired, but specular highlights are not needed.
+
+#### macro.cginc
+Preprocessor macros to support shaders
+
+#### StandardFast.shader
+Higher performance drop-in replacement for the Unity Standard Shader.  Use when very high quality lighting (including reflections) is needed.
+
+#### UnlitConfigurable.cginc
+Code shared between UnlitConfigurable.shader and UnlitConfigurableTransparent.shader.
+
+#### UnlitConfigurable.shader
+Feature configurable unlit shader.  Use when no lighting is desired.
+
+#### UnlitConfigurableTransparent.shader
+Feature configurable unlit transparent shader.  Use when transparency and no lighting are desired.
+
+#### UnlitNoDepthTest.shader
+Render with a single texture but ignore depth test resuls so object always appears on top.
+
+#### VertexLitConfigurable.cginc
+Code shared between VertexLitConfigurable.shader and VertexLitConfigurableTransparent.shader.
+
+#### VertexLitConfigurable.shader
+Feature configurable vertex lit shader.  Use when a higher performance but lower precision lighting trade-off is acceptable.
+
+#### VertexLitConfigurableTransparent.shader
+Feature configurable vertex lit transparent shader.  Use when a higher performance but lower precision lighting trade-off is acceptable, and transparency is needed.
 
 #### WindowOcclusion.shader
 A simple occlusion shader that can be used to hide other objects. This prevents other objects from being rendered by drawing invisible 'opaque' pixels to the depth buffer. This shader differs from Occlusion.shader in that it doesn't have any depth offset, so it should sort as expected with other objects adjacent to the window.
