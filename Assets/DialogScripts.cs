@@ -7,6 +7,7 @@ using HUX.Interaction;
 using HUX.Receivers;
 using System.Collections;
 using UnityEngine;
+using HUX.Focus;
 
 public class DialogScripts : InteractionReceiver
 {
@@ -14,12 +15,11 @@ public class DialogScripts : InteractionReceiver
     public GameObject[] LaunchDialogButtons;
     public TextMesh Result;
 
-    [Header("Dialog 1 options")]
-    public string Dialog1Title = "Close Dialog";
+    [Header("Help Options")]
+    public string HelpTitle = "Help";
     [TextArea]
-    public string Dialog1Message = "This is a message for dialog 1.";
-    SimpleDialog.ButtonTypeEnum Dialog1Button = SimpleDialog.ButtonTypeEnum.Close;
-
+    public string HelpMessage = "Help Text Goes Here";
+    SimpleDialog.ButtonTypeEnum HelpButton = SimpleDialog.ButtonTypeEnum.Close;
 
     [Header("Dialog 2 options")]
     public string Dialog2Title = "Yes No Dialog";
@@ -27,14 +27,6 @@ public class DialogScripts : InteractionReceiver
     public string Dialog2Message = "This is a message for dialog 2. Longer messages will be wrapped automatically. However you still need to be aware of overflow.";
     SimpleDialog.ButtonTypeEnum Dialog2Button1 = SimpleDialog.ButtonTypeEnum.Yes;
     SimpleDialog.ButtonTypeEnum Dialog2Button2 = SimpleDialog.ButtonTypeEnum.No;
-
-    /*public string Dialog3Title = "Yes No Cancel Dialog";
-    [TextArea]
-    public string Dialog3Message = "This is a message for dialog 3. Longer messages will be wrapped automatically. However you still need to be aware of overflow.";
-    SimpleDialog.ButtonTypeEnum Dialog3Button1 = SimpleDialog.ButtonTypeEnum.Yes;
-    SimpleDialog.ButtonTypeEnum Dialog3Button2 = SimpleDialog.ButtonTypeEnum.No;
-    SimpleDialog.ButtonTypeEnum Dialog3Button3 = SimpleDialog.ButtonTypeEnum.Cancel;
-    */
 
     protected bool launchedDialog;
 
@@ -50,22 +42,37 @@ public class DialogScripts : InteractionReceiver
 
         switch (obj.name)
         {
-            case "RecordButton":
             default:
-                title = Dialog1Title;
-                message = Dialog1Message;
-                buttons = Dialog1Button;
+                launchedDialog = true;
+                StartCoroutine(LaunchDialogOverTime(HelpButton, HelpTitle, HelpMessage));
                 break;
 
+            case "RecordButton":
+                setResultText("Recording...");
+                closeMenu("InitalMenu");
+                openMenu("OnRecordMenu");
+                break;
+            
             case "LibraryButton":
                 title = Dialog2Title;
                 message = Dialog2Message;
                 buttons = Dialog2Button1 | Dialog2Button2;
+                launchedDialog = true;
+                StartCoroutine(LaunchDialogOverTime(buttons, title, message));
                 break;
-        }
 
-        launchedDialog = true;
-        StartCoroutine(LaunchDialogOverTime(buttons, title, message));
+            case "StopButton":
+                setResultText("Recording Stopped");
+                closeMenu("OnRecordMenu");
+                openMenu("InitalMenu");
+                break;
+
+            case "CancelButton":
+                setResultText("Recording Cancelled");
+                closeMenu("OnRecordMenu");
+                openMenu("InitalMenu");
+                break;
+        }       
     }
 
     protected IEnumerator LaunchDialogOverTime(SimpleDialog.ButtonTypeEnum buttons, string title, string message)
@@ -96,8 +103,32 @@ public class DialogScripts : InteractionReceiver
         yield break;
     }
 
+    protected void closeMenu(string menuName)
+    {
+        GameObject menu = GameObject.Find(menuName);
+        if(menu!= null)
+            menu.SetActive(false);
+        else
+            setResultText("Cannot find menu" + menuName);
+    }
+    
+    protected void openMenu(string menuName)
+    {
+        GameObject menu = GameObject.Find(menuName);
+        if (menu != null)
+            menu.SetActive(true);
+        else
+            setResultText("Cannot find menu" + menuName);
+    }
+
     protected void OnClosed(SimpleDialogResult result)
     {
-        Result.text = "Dialog result: " + result.Result.ToString();
+        setResultText("Dialog result: " + result.Result.ToString());
     }
+
+    void setResultText(string str)
+    {
+        Result.text = str;
+    }
+
 }
