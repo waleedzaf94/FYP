@@ -5,6 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Origami.unity
     guid: f94495dcb09990b49a51fb707c5c23b9
+  - enabled: 1
+    path: Assets/SpatialUnderstanding.unity
+    guid: 56466a8aa473f754a9a957bc175ffe76
