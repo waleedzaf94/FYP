@@ -5,8 +5,6 @@ using Windows.ApplicationModel.Core;
 using Windows.UI.Core;
 using Windows.UI.ViewManagement;
 using UnityPlayer;
-using HoloToolkit.Unity;
-using WinRTBridge;
 
 namespace SpatialMapping
 {
@@ -14,12 +12,12 @@ namespace SpatialMapping
     {
         private WinRTBridge.WinRTBridge m_Bridge;
         private AppCallbacks m_AppCallbacks;
-        private SpatialUnderstanding spatialUnderstanding;
 
         public App()
         {
             SetupOrientation();
             m_AppCallbacks = new AppCallbacks();
+
             // Allow clients of this class to append their own callbacks.
             AddAppCallbacks(m_AppCallbacks);
         }

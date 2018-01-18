@@ -55,10 +55,10 @@ namespace HoloToolkit.Unity.SpatialMapping
     public class SpatialMappingObserver : SpatialMappingSource
     {
         [Tooltip("The number of triangles to calculate per cubic meter.")]
-        public float TrianglesPerCubicMeter = 500f;
+        public float TrianglesPerCubicMeter = 2000f;
 
         [Tooltip("How long to wait (in sec) between Spatial Mapping updates.")]
-        public float TimeBetweenUpdates = 3.5f;
+        public float TimeBetweenUpdates = 2.0f;
 
         /// <summary>
         /// Indicates the current state of the Surface Observer.
