@@ -23,6 +23,12 @@ namespace Assets.Scripts
         private StorageServiceClient client;
         private BlobService blobService;
 
+
+        [Header("Library Fields")]
+        [SerializeField]
+        private TextMesh label;
+        [SerializeField]
+        private PopulateLibrary library;
         void Start()
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
@@ -38,6 +44,11 @@ namespace Assets.Scripts
             //StartCoroutine(blobService.PutImageBlob(PutImageCompleted, objectBytes, container, filename, "image/png"));
         }
 
+        internal void GetBlobList()
+        {
+            StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, container));
+        }
+
         public void PutObjectCompleted(RestResponse obj)
         {
             //throw new NotImplementedException();
@@ -45,5 +56,24 @@ namespace Assets.Scripts
             if (obj.IsError)
                 Debug.Log(obj.ErrorMessage);
         }
+
+        private void ListBlobsCompleted(IRestResponse<BlobResults> response)
+        {
+            if (response.IsError)
+            {
+                //Log.Text(label, "Failed to get list of blobs", "List blob error: " + response.ErrorMessage, Log.Level.Error);
+                return;
+            }
+
+            //Log.Text(label, "Loaded blobs: " + response.Data.Blobs.Length, "Loaded blobs: " + response.Data.Blobs.Length);
+            ReloadBlobList(response.Data.Blobs);
+        }
+
+        private void ReloadBlobList(Blob[] blobs)
+        {
+            label.text = "Blobs received: " + blobs.Length;
+            library.SetBlobs(blobs);
+        }
+
     }
 }

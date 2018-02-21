@@ -8,3 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Recording.unity
     guid: 0ed11dda90d47864bb48c89d8ee459ce
+  - enabled: 0
+    path: Assets/Scenes/Library.unity
+    guid: d98622138f1885945812367eb7ab89d9

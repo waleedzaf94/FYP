@@ -17,6 +17,11 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     public TextMesh DebugDisplay;
     public TextMesh DebugSubDisplay;
+    public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
+    public Material OccludedMaterial;
+    public Material MeshMaterial;
+
+
 
     private bool _triggered = false;
     public bool HideText = false;
@@ -24,6 +29,8 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private bool ready = false;
 
     private string _spaceQueryDescription;
+    private bool _timeToHideMesh;
+
     // private RoomSaver roomSaver;
 
     public string SpaceQueryDescription
@@ -37,6 +44,23 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             _spaceQueryDescription = value;
         }
     }
+
+    public void HideMesh()
+    {
+        _timeToHideMesh = true;
+        HideText = true;
+        //SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = OccludedMaterial;
+        SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
+        Debug.Log("Calling Hide");
+    }
+
+    public void ShowMesh()
+    {
+        _timeToHideMesh = false;
+        SpatialUnderstandingMesh.MeshMaterial = MeshMaterial;
+        Debug.Log("Calling Show");
+    }
+
 
     public bool DoesScanMeetMinBarForCompletion
     {
@@ -105,7 +129,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                     case SpatialUnderstanding.ScanStates.Done:
                         return "Scan complete";
                     default:
-                        return "ScanState = " + SpatialUnderstanding.Instance.ScanState;
+                        return "";
                 }
             }
             return string.Empty;
@@ -178,8 +202,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         {
             return;
         }
-
-        // Update display text
         DebugDisplay.text = PrimaryText;
         DebugDisplay.color = PrimaryColor;
         DebugSubDisplay.text = DetailsText;
@@ -188,12 +210,8 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private void Start()
     {
         InputManager.Instance.PushFallbackInputHandler(gameObject);
-        // roomSaver = gameObject.AddComponent<RoomSaver>();
     }
-    //public ObjectPlacer Placer;
 
-    //public MeshInfoFetcher meshInfoFetcher;
-    // Update is called once per frame
     private void Update()
     {
         // Updates
@@ -203,18 +221,8 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         {
             _triggered = true;
             ready = false;
-            // roomSaver.fileName = "mesh_save_test"+counter;
-            // roomSaver.anchorStoreName = "mesh_test_anchor";
-            // roomSaver.SaveRoom();
-            // counter++;
-            //SpatialUnderstanding.Instance.RequestBeginScanning();
         }
     }
-
-    //private void PublishCompleted(Task arg1, object arg2)
-    //{
-    //    Debug.Log("Completed");
-    //}
 
 
     public void OnInputClicked(InputClickedEventData eventData)
@@ -223,9 +231,14 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
             !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
         {
-            // SpatialUnderstanding.Instance.RequestFinishScan();
             _triggered = false;
         }
+        if (_timeToHideMesh)
+        {
+            HideMesh();
+            _timeToHideMesh = false;
+        }
+
     }
 
     void ISourceStateHandler.OnSourceDetected(SourceStateEventData eventData)

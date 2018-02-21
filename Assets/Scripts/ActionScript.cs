@@ -1,5 +1,6 @@
 using UnityEngine;
 using HoloToolkit.Unity;
+using UnityEngine.SceneManagement;
 
 namespace Assets.Scripts
 {
@@ -8,17 +9,42 @@ namespace Assets.Scripts
         [Header("Services")]
         [Tooltip("Attach the Azure Service Here")]
         public StorageService storage;
-
         private string localPath;
         private RoomSaver roomSaver;
+        public GameObject library;
+
 
         void Start()
         {
             roomSaver = gameObject.AddComponent<RoomSaver>();
+            library.SetActive(false);
         }
 
         void Update()
         {
+        }
+
+
+        public void TappedStartScan()
+        {
+            SpatialUnderstandingState.Instance.ShowMesh();
+
+            SpatialUnderstanding.Instance.RequestBeginScanning();
+        }
+
+        public void TappedReset()
+        {
+        }
+
+        public void TappedLibrary()
+        {
+            if (SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
+            {
+                SpatialUnderstanding.Instance.RequestFinishScan();
+            }
+            SpatialUnderstandingState.Instance.HideMesh();
+            storage.GetBlobList();
+            library.SetActive(true);
         }
 
         public void TappedSave()
