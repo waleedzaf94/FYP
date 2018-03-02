@@ -8,9 +8,9 @@
 NewSpatial.sln: modified
 GeneratedProjects\UWP\Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 NewSpatial\App.cs: 82984C4841777A4606C3C2FF98A2BB78
-NewSpatial\NewSpatial.csproj: C4BB0E661CD55EC10B709679CA5CDD61
+NewSpatial\NewSpatial.csproj: 59C0353DC35AA94772C78210A385BD5E
 NewSpatial\NewSpatial.csproj.user: modified
-NewSpatial\Package.appxmanifest: 16C4C27A4F92D8190EB05A90227967BF
+NewSpatial\Package.appxmanifest: 4D5166C09ED48A66641096F415C7FFFC
 NewSpatial\project.json: 1D02BC64BAC0D041019673A1C4C51737
 NewSpatial\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
 NewSpatial\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084

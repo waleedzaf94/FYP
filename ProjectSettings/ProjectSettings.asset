@@ -547,7 +547,7 @@ PlayerSettings:
     Metro: 2
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 1
+  scriptingRuntimeVersion: 0
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
@@ -560,7 +560,7 @@ PlayerSettings:
   metroCertificateNotAfter: 00ad650643bed401
   metroApplicationDescription: NewSpatial
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: NewSpatial
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
@@ -655,12 +655,13 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    UNet: 1
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 3
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  apiCompatibilityLevel: 2
+  cloudProjectId: fe340677-0818-4f7f-a1cf-739e54451b43
+  projectName: NewSpatial
+  organizationId: amngupta
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

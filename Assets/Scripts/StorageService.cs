@@ -1,11 +1,6 @@
 ﻿using Azure.StorageServices;
 using RESTClient;
-using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 namespace Assets.Scripts
@@ -18,7 +13,9 @@ namespace Assets.Scripts
         [SerializeField]
         private string accessKey;
         [SerializeField]
-        private string container;
+        private string InputContainer;
+        [SerializeField]
+        private string OutputContainer;
 
         private StorageServiceClient client;
         private BlobService blobService;
@@ -29,6 +26,7 @@ namespace Assets.Scripts
         private TextMesh label;
         [SerializeField]
         private PopulateLibrary library;
+
         void Start()
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
@@ -40,18 +38,16 @@ namespace Assets.Scripts
             string filename = Path.GetFileName(localPath);
             string stringArray = File.ReadAllText(localPath);
             Debug.Log("filename gotten: " + filename);
-            StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, container, filename));
-            //StartCoroutine(blobService.PutImageBlob(PutImageCompleted, objectBytes, container, filename, "image/png"));
+            StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, InputContainer, filename));
         }
 
         internal void GetBlobList()
         {
-            StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, container));
+            StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, OutputContainer));
         }
 
         public void PutObjectCompleted(RestResponse obj)
         {
-            //throw new NotImplementedException();
             Debug.Log(obj.StatusCode);
             if (obj.IsError)
                 Debug.Log(obj.ErrorMessage);
@@ -62,6 +58,7 @@ namespace Assets.Scripts
             if (response.IsError)
             {
                 //Log.Text(label, "Failed to get list of blobs", "List blob error: " + response.ErrorMessage, Log.Level.Error);
+                Debug.Log("Error on fetch from blob");
                 return;
             }
 

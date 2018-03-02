@@ -17,9 +17,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     public TextMesh DebugDisplay;
     public TextMesh DebugSubDisplay;
-    public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
-    public Material OccludedMaterial;
-    public Material MeshMaterial;
+
 
 
 
@@ -44,23 +42,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             _spaceQueryDescription = value;
         }
     }
-
-    public void HideMesh()
-    {
-        _timeToHideMesh = true;
-        HideText = true;
-        //SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = OccludedMaterial;
-        SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
-        Debug.Log("Calling Hide");
-    }
-
-    public void ShowMesh()
-    {
-        _timeToHideMesh = false;
-        SpatialUnderstandingMesh.MeshMaterial = MeshMaterial;
-        Debug.Log("Calling Show");
-    }
-
 
     public bool DoesScanMeetMinBarForCompletion
     {
@@ -233,12 +214,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         {
             _triggered = false;
         }
-        if (_timeToHideMesh)
-        {
-            HideMesh();
-            _timeToHideMesh = false;
-        }
-
     }
 
     void ISourceStateHandler.OnSourceDetected(SourceStateEventData eventData)

@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class PopulateLibrary : MonoBehaviour {
 
-    List<Blob> blobList;
+    private List<Blob> blobList;
     private bool _loaded;
     public Button prefab;
     private bool _populated;

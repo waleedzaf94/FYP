@@ -162,7 +162,6 @@ namespace HoloToolkit.Unity
             {
                 SpatialUnderstandingDll.Imports.SpatialUnderstanding_Term();
             }
-
             base.OnDestroy();
         }
 

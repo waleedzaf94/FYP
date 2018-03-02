@@ -1,6 +1,7 @@
 using UnityEngine;
 using HoloToolkit.Unity;
 using UnityEngine.SceneManagement;
+using System;
 
 namespace Assets.Scripts
 {
@@ -9,15 +10,16 @@ namespace Assets.Scripts
         [Header("Services")]
         [Tooltip("Attach the Azure Service Here")]
         public StorageService storage;
+        [Tooltip("Attach the Vie Manager Here")]
+        public ViewManager ViewManager;
+
         private string localPath;
         private RoomSaver roomSaver;
-        public GameObject library;
 
 
         void Start()
         {
             roomSaver = gameObject.AddComponent<RoomSaver>();
-            library.SetActive(false);
         }
 
         void Update()
@@ -27,31 +29,35 @@ namespace Assets.Scripts
 
         public void TappedStartScan()
         {
-            SpatialUnderstandingState.Instance.ShowMesh();
-
+            if (!ViewManager.RecordingView.activeSelf)
+            {
+                ViewManager.InitializeRecording();
+            }
             SpatialUnderstanding.Instance.RequestBeginScanning();
         }
 
         public void TappedReset()
         {
+            Debug.Log("Tapped Reset");
+            ViewManager.ResetMesh();
         }
 
         public void TappedLibrary()
         {
+            ViewManager.InitializeLibrary();
+            storage.GetBlobList();
             if (SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
             {
                 SpatialUnderstanding.Instance.RequestFinishScan();
             }
-            SpatialUnderstandingState.Instance.HideMesh();
-            storage.GetBlobList();
-            library.SetActive(true);
         }
 
         public void TappedSave()
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
-                roomSaver.fileName = "mesh_save_test";
+                roomSaver.fileName = "mesh_save_test" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                Debug.Log("Saving to file" + roomSaver.fileName);
                 roomSaver.anchorStoreName = "mesh_test_anchor";
                 localPath = roomSaver.SaveRoom();
                 Debug.Log("File Name: " + localPath);
@@ -67,6 +73,12 @@ namespace Assets.Scripts
                 SpatialUnderstanding.Instance.RequestFinishScan();
             }
         }
+
+        public void TappedTestObject()
+        {
+            ViewManager.InitializeVisualization();
+        }
+
 
     }
 }
