@@ -22,7 +22,7 @@ namespace Assets.Scripts
         {
             _timeToHideMesh = true;
             //ToggleChildren(LibraryView, false);
-            LibraryView.SetActive(false);
+            LibraryView.SetActive(true);
             VisualizationView.SetActive(false);
             RecordingView.SetActive(false);
         }
@@ -71,7 +71,7 @@ namespace Assets.Scripts
         {
             Debug.Log("Recording View Called");
             _timeToHideMesh = false;
-            ResetMesh();
+            //ResetMesh();
             ShowMesh();
             RecordingView.SetActive(true);
             VisualizationView.SetActive(false);
@@ -96,10 +96,10 @@ namespace Assets.Scripts
         {
             Debug.Log("Resetting mesh");
             //SpatialUnderstanding spatial = gameObject.GetComponent<SpatialUnderstanding>();
-            //Destroy(SpatialUnderstanding.Instance);
-            SpatialUnderstanding.Instance.UnityFastInvoke_Awake();
+            Destroy(SpatialUnderstanding.Instance);
+            //SpatialUnderstanding.Instance.UnityFastInvoke_Awake();
             //SpatialUnderstanding newSpatial = gameObject.AddComponent<SpatialUnderstanding>();
-            //Instantiate(gameObject.AddComponent<SpatialUnderstanding>());
+            Instantiate(gameObject.AddComponent<SpatialUnderstanding>());
             //SpatialUnderstandingMesh = newSpatial.UnderstandingCustomMesh;
         }
 

@@ -31,6 +31,7 @@ namespace Assets.Scripts
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
             blobService = client.GetBlobService();
+            this.GetBlobList();
         }
 
         public void PutObjectBlob(string localPath)

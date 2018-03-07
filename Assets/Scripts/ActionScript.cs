@@ -79,6 +79,36 @@ namespace Assets.Scripts
             ViewManager.InitializeVisualization();
         }
 
+        public void TappedHelp()
+        {
+
+        }
+
+        public void TappedRecordingView()
+        {
+            ViewManager.InitializeRecording();
+        }
+
+        public void TappedRefresh()
+        {
+            storage.GetBlobList();
+        }
+
+        public void TappedBackToLibrary()
+        {
+            ViewManager.InitializeLibrary();
+        }
+
+
+        public void TappedMeshInfo()
+        {
+
+        }
+
+        public void TappedChangeView()
+        {
+
+        }
 
     }
 }
