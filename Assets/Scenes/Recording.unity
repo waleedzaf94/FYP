@@ -1393,6 +1393,25 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 341272766}
+--- !u!1 &376902724 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447644256705242, guid: 9d06b70923afd0d409156ac689d1eba8,
+    type: 2}
+  m_PrefabInternal: {fileID: 1457967823}
+--- !u!114 &376902725
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376902724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 66b59d46dda348b4c8374dc583c6c497, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MeshHolder: {fileID: 376902724}
+  MeshMaterials:
+  - {fileID: 2100000, guid: 46439ed2b3a117c4790396478c1e4212, type: 2}
 --- !u!1 &388767796
 GameObject:
   m_ObjectHideFlags: 0
@@ -1494,8 +1513,9 @@ MonoBehaviour:
   accessKey: BwzvrI/HwZWJpGAlsMhfNnaNzNHz/gaCnGF4OcU84f2l+hY+PI1UtAD6yw9fB8iV6nWnXGWC34yuA25G13ukFA==
   InputContainer: recorded-objects
   OutputContainer: output-objects
-  label: {fileID: 271105706}
-  library: {fileID: 1561855157}
+  Label: {fileID: 271105706}
+  LibraryManager: {fileID: 1561855157}
+  MeshRenderHolder: {fileID: 376902725}
 --- !u!114 &405836689
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5245,6 +5265,10 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 1.5
       objectReference: {fileID: 0}
+    - target: {fileID: 1447644256705242, guid: 9d06b70923afd0d409156ac689d1eba8, type: 2}
+      propertyPath: m_Name
+      value: Hologram
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d06b70923afd0d409156ac689d1eba8, type: 2}
   m_IsPrefabParent: 0
@@ -5558,6 +5582,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89e53b044496ef4786d718dfb1b31b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  StorageService: {fileID: 405836688}
   prefab: {fileID: 114583839890586868, guid: 705951f50ae709247bfa17b449a4cb9d, type: 2}
 --- !u!1001 &1569750418
 Prefab:

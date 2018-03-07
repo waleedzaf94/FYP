@@ -81,6 +81,20 @@ namespace HoloToolkit.Unity.SpatialMapping
             return Path.Combine(folderName, fileName + fileExtension);
         }
 
+        public static string SaveStringAsTemporaryMesh(string meshInfo)
+        {
+            String folderName = MeshFolderName;
+            String fileName = "Temp_Mesh_Saved";
+            using (StreamWriter outputFile = new StreamWriter(OpenFileForWrite(folderName, fileName + fileExtension)))
+            {
+
+                int o = 0;
+                outputFile.WriteLine(meshInfo);
+            }
+            return Path.Combine(folderName, fileName + fileExtension);
+
+        }
+
 
         public static string MeshToString(Mesh m, int lastFaceIndex = 0)
         {

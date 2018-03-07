@@ -1,4 +1,5 @@
 ﻿using Azure.StorageServices;
+using HoloToolkit.Unity.SpatialMapping;
 using RESTClient;
 using System.IO;
 using UnityEngine;
@@ -23,15 +24,18 @@ namespace Assets.Scripts
 
         [Header("Library Fields")]
         [SerializeField]
-        private TextMesh label;
+        private TextMesh Label;
         [SerializeField]
-        private PopulateLibrary library;
+        private PopulateLibrary LibraryManager;
+        [SerializeField]
+        private MeshRenderScript MeshRenderHolder;
+
 
         void Start()
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
             blobService = client.GetBlobService();
-            this.GetBlobList();
+            GetBlobList();
         }
 
         public void PutObjectBlob(string localPath)
@@ -45,6 +49,26 @@ namespace Assets.Scripts
         internal void GetBlobList()
         {
             StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, OutputContainer));
+        }
+
+        internal void GetBlobAsText(string filename)
+        {
+            string resourcePath = OutputContainer + "/" + filename;
+            Label.text = "Loading Mesh...";
+            StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
+        }
+
+        private void GetTextBlobComplete(RestResponse response)
+        {
+            if (response.IsError)
+            {
+                Debug.Log(response.ErrorMessage + " Error getting blob:" + response.Content);
+                return;
+            }
+            Debug.Log("Get blob:" + response.Content.Length);
+            string filename = MeshSaver.SaveStringAsTemporaryMesh(response.Content);
+            Debug.Log("Mesh Saved At " + filename);
+            MeshRenderHolder.Filename = filename;
         }
 
         public void PutObjectCompleted(RestResponse obj)
@@ -69,9 +93,8 @@ namespace Assets.Scripts
 
         private void ReloadBlobList(Blob[] blobs)
         {
-            label.text = "Blobs received: " + blobs.Length;
-            library.SetBlobs(blobs);
+            //label.text = "Blobs received: " + blobs.Length;
+            LibraryManager.SetBlobs(blobs);
         }
-
     }
 }
