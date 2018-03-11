@@ -8,7 +8,7 @@
 NewSpatial.sln: modified
 GeneratedProjects\UWP\Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
 NewSpatial\App.cs: modified
-NewSpatial\NewSpatial.csproj: 13709DB1EC2CCC93C0E7D0F2A4263410
+NewSpatial\NewSpatial.csproj: modified
 NewSpatial\NewSpatial.csproj.user: modified
 NewSpatial\Package.appxmanifest: 4D5166C09ED48A66641096F415C7FFFC
 NewSpatial\project.json: 1D02BC64BAC0D041019673A1C4C51737

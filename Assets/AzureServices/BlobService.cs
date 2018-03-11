@@ -131,7 +131,7 @@ namespace Azure.StorageServices {
         headers.Add("x-ms-blob-type", "BlockBlob");
 
         string filePath = resourcePath.Length > 0 ? resourcePath + "/" + file : file;
-        StorageRequest request = Auth.CreateAuthorizedStorageRequest(client, method, filePath, null, headers, contentLength);
+        StorageRequest request = Auth.CreateAuthorizedStorageRequest(client, method, bytes, filePath, null, headers, contentLength);
         request.AddBody(bytes, contentType);
         yield return request.Send();
         request.Result(callback);
@@ -139,11 +139,11 @@ namespace Azure.StorageServices {
 
     #endregion
 
-        public IEnumerator DeleteBlob(Action<RestResponse> callback, string resourcePath, string filename) {
-      string filePath = resourcePath.Length > 0 ? resourcePath + "/" + filename : filename;
-      StorageRequest request = Auth.CreateAuthorizedStorageRequest(client, Method.DELETE, filePath);
-      yield return request.Send();
-      request.Result(callback);
+    public IEnumerator DeleteBlob(Action<RestResponse> callback, string resourcePath, string filename) {
+          string filePath = resourcePath.Length > 0 ? resourcePath + "/" + filename : filename;
+          StorageRequest request = Auth.CreateAuthorizedStorageRequest(client, Method.DELETE, filePath);
+          yield return request.Send();
+          request.Result(callback);
     }
   }
 }

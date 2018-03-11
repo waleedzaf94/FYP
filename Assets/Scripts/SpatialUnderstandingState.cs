@@ -28,7 +28,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
 
     private string _spaceQueryDescription;
     private bool _timeToHideMesh;
-
+    private bool _isSaveCompleted = false;
     // private RoomSaver roomSaver;
 
     public string SpaceQueryDescription
@@ -73,6 +73,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
     }
 
+   
     public string PrimaryText
     {
         get
@@ -85,10 +86,18 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             {
                 return SpaceQueryDescription;
             }
-
+            if (_saveStarted)
+            {
+                return "Save Started";
+            }
+            if (_isSaveCompleted)
+            {
+                return "Save Complete";
+            }
             // Scan state
             if (SpatialUnderstanding.Instance.AllowSpatialUnderstanding)
             {
+                
                 switch (SpatialUnderstanding.Instance.ScanState)
                 {
                     case SpatialUnderstanding.ScanStates.Scanning:
@@ -116,7 +125,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             return string.Empty;
         }
     }
-
+  
     public Color PrimaryColor
     {
         get
@@ -176,6 +185,20 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
     }
 
+    internal void SaveStarted(bool v)
+    {
+        _saveStarted = v;
+    }
+
+    internal void SaveComplete(bool value)
+    {
+        SaveStarted(false);
+        Debug.Log("Save Complete");
+        _isSaveCompleted = value;
+    }
+
+    public bool _saveStarted { get; private set; }
+
     private void Update_DebugDisplay()
     {
         // Basic checks
@@ -196,15 +219,20 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private void Update()
     {
         // Updates
-        Update_DebugDisplay();
-
-        if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
+        if (SpatialUnderstanding.Instance != null)
         {
-            _triggered = true;
-            ready = false;
+            Update_DebugDisplay();
+            if (!_triggered && SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
+            {
+                _triggered = true;
+                ready = false;
+            }
+        }
+        else
+        {
+            //SpatialUnderstanding.Awake();
         }
     }
-
 
     public void OnInputClicked(InputClickedEventData eventData)
     {

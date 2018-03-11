@@ -12,6 +12,9 @@ namespace Azure.StorageServices {
   public sealed class StorageRequest : RestRequest {
     public StorageRequest(string url, Method method) : base(url, method) {
     }
+    
+    public StorageRequest(string url, Method method, byte[] data) : base(url, method, data) { 
+    }
 
     public StorageRequest(UnityWebRequest request) : base(request) {
     }

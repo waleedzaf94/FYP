@@ -142,7 +142,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             mesh.triangles = triangleIndices;
             // Reconstruct the normals from the vertices and triangles.
             mesh.RecalculateNormals();
-
+           
             return mesh;
         }
 
@@ -173,6 +173,8 @@ namespace HoloToolkit.Unity.SpatialMapping
 
             vertexCount = reader.ReadInt32();
             triangleIndexCount = reader.ReadInt32();
+            Debug.Log("Vertex Count " + vertexCount);
+            Debug.Log("TriangleIndex Count " + triangleIndexCount);
         }
 
         /// <summary>

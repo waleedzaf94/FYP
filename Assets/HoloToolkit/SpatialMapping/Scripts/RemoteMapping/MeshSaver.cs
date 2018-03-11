@@ -81,18 +81,33 @@ namespace HoloToolkit.Unity.SpatialMapping
             return Path.Combine(folderName, fileName + fileExtension);
         }
 
-        public static string SaveStringAsTemporaryMesh(string meshInfo)
+        public static string SaveStringAsSubMesh(string submeshInfo, string fileName)
         {
-            String folderName = MeshFolderName;
-            String fileName = "Temp_Mesh_Saved";
+            string folderName = MeshFolderName;
             using (StreamWriter outputFile = new StreamWriter(OpenFileForWrite(folderName, fileName + fileExtension)))
             {
+                Debug.Log("Saving File..." + fileName);
+                outputFile.WriteLine(submeshInfo);
+                //outputFile.WriteLine(tempInfo);
+            }
+            return Path.Combine(folderName, fileName + fileExtension);
+        }
 
-                int o = 0;
+
+        public static string SaveStringAsTemporaryMesh(string meshInfo)
+        {
+            
+            string fileName = "TempFile_Save";
+            string folderName = MeshFolderName;
+            using (StreamWriter outputFile = new StreamWriter(OpenFileForWrite(folderName, fileName + fileExtension)))
+            {
+                Debug.Log("Saving File..." + fileName);
                 outputFile.WriteLine(meshInfo);
             }
             return Path.Combine(folderName, fileName + fileExtension);
-
+            //int i = 0;
+           
+            //return submeshPaths;
         }
 
 

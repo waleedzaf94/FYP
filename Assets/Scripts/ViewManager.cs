@@ -10,8 +10,9 @@ namespace Assets.Scripts
         public GameObject LibraryView;
         public GameObject RecordingView;
         public GameObject VisualizationView;
-
-
+        public GameObject SpatialUnderstandingObject;
+        public GameObject SpatialUnderstandingPrefab;
+        public Transform SpatialTransform;
         private bool _timeToHideMesh;
 
         public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
@@ -76,10 +77,12 @@ namespace Assets.Scripts
             RecordingView.SetActive(true);
             VisualizationView.SetActive(false);
             LibraryView.SetActive(false);
+            SpatialUnderstandingState.Instance.SaveComplete(false);
         }
 
         public void HideMesh()
         {
+            SpatialUnderstandingMesh.DrawProcessedMesh = false;
             //SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = OccludedMaterial;
             //SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
             Debug.Log("Calling Hide");
@@ -88,6 +91,8 @@ namespace Assets.Scripts
 
         public void ShowMesh()
         {
+            SpatialUnderstandingMesh.DrawProcessedMesh = true;
+
             SpatialUnderstandingMesh.MeshMaterial = MeshMaterial;
             Debug.Log("Calling Show");
         }
@@ -95,11 +100,17 @@ namespace Assets.Scripts
         public void ResetMesh()
         {
             Debug.Log("Resetting mesh");
+            //NEED TO PUT CHECK FOR STATE HERE
+
+            SpatialUnderstanding.Instance.UnderstandingCustomMesh.Cleanup();
+
             //SpatialUnderstanding spatial = gameObject.GetComponent<SpatialUnderstanding>();
-            Destroy(SpatialUnderstanding.Instance);
+            //Transform parent = SpatialUnderstandingObject.GetParentRoot().transform;
+            //DestroyImmediate(SpatialUnderstandingObject);
+            //GameObject newSpatial = Instantiate(SpatialUnderstandingPrefab, SpatialTransform);
             //SpatialUnderstanding.Instance.UnityFastInvoke_Awake();
             //SpatialUnderstanding newSpatial = gameObject.AddComponent<SpatialUnderstanding>();
-            Instantiate(gameObject.AddComponent<SpatialUnderstanding>());
+            //Instantiate(gameObject.AddComponent<SpatialUnderstanding>());
             //SpatialUnderstandingMesh = newSpatial.UnderstandingCustomMesh;
         }
 

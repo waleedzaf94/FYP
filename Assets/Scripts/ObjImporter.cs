@@ -1,8 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Text;
 //using UnityEditor;
 
 namespace Assets.Scripts
@@ -27,24 +25,24 @@ namespace Assets.Scripts
         }
 
         // Use this for initialization
-        public Mesh ImportFile(string filePath)
+        public Mesh ImportFile(string meshInfo)
         {
-            meshStruct newMesh = createMeshStruct(filePath);
-            populateMeshStruct(ref newMesh);
-
+            meshStruct newMesh = createMeshStruct(meshInfo);
+            populateMeshStruct(ref newMesh, meshInfo);
+            
             Vector3[] newVerts = new Vector3[newMesh.faceData.Length];
             Vector2[] newUVs = new Vector2[newMesh.faceData.Length];
             Vector3[] newNormals = new Vector3[newMesh.faceData.Length];
             int i = 0;
             /* The following foreach loops through the facedata and assigns the appropriate vertex, uv, or normal
-             * for the appropriate Unity mesh array.
-             */
+                * for the appropriate Unity mesh array.
+                */
+
             foreach (Vector3 v in newMesh.faceData)
             {
                 newVerts[i] = newMesh.vertices[(int)v.x - 1];
-                if (v.y >= 1)
-                    newUVs[i] = newMesh.uv[(int)v.y - 1];
-
+                //if (v.y >= 1)
+                //    newUVs[i] = newMesh.uv[(int)v.y - 1];
                 if (v.z >= 1)
                     newNormals[i] = newMesh.normals[(int)v.z - 1];
                 i++;
@@ -53,17 +51,16 @@ namespace Assets.Scripts
             Mesh mesh = new Mesh();
 
             mesh.vertices = newVerts;
-            mesh.uv = newUVs;
+            mesh.name = newMesh.fileName;
+            //mesh.uv = newUVs;
             mesh.normals = newNormals;
             mesh.triangles = newMesh.triangles;
-
+            mesh.RecalculateNormals();
             mesh.RecalculateBounds();
-            //MeshUtility.Optimize(mesh);
-
             return mesh;
         }
 
-        private static meshStruct createMeshStruct(string filename)
+        private static meshStruct createMeshStruct(string meshInfo)
         {
             int triangles = 0;
             int vertices = 0;
@@ -71,11 +68,8 @@ namespace Assets.Scripts
             int vn = 0;
             int face = 0;
             meshStruct mesh = new meshStruct();
-            mesh.fileName = filename;
-            StreamReader stream = File.OpenText(filename);
-            string entireText = stream.ReadToEnd();
-            stream.Dispose();
-            using (StringReader reader = new StringReader(entireText))
+            mesh.fileName = meshInfo.GetHashCode().ToString();
+            using (StringReader reader = new StringReader(meshInfo))
             {
                 string currentText = reader.ReadLine();
                 char[] splitIdentifier = { ' ' };
@@ -129,12 +123,10 @@ namespace Assets.Scripts
             return mesh;
         }
 
-        private static void populateMeshStruct(ref meshStruct mesh)
+        private static void populateMeshStruct(ref meshStruct mesh, string meshInfo)
         {
-            StreamReader stream = File.OpenText(mesh.fileName);
-            string entireText = stream.ReadToEnd();
-            stream.Dispose();
-            using (StringReader reader = new StringReader(entireText))
+            int faceSubtract = 0;
+            using (StringReader reader = new StringReader(meshInfo))
             {
                 string currentText = reader.ReadLine();
 
@@ -149,6 +141,7 @@ namespace Assets.Scripts
                 int vt = 0;
                 int vt1 = 0;
                 int vt2 = 0;
+                bool _isFirst = true;
                 while (currentText != null)
                 {
                     if (!currentText.StartsWith("f ") && !currentText.StartsWith("v ") && !currentText.StartsWith("vt ") &&
@@ -178,7 +171,7 @@ namespace Assets.Scripts
                                 break;
                             case "v":
                                 mesh.vertices[v] = new Vector3(System.Convert.ToSingle(brokenString[1]), System.Convert.ToSingle(brokenString[2]),
-                                                         System.Convert.ToSingle(brokenString[3]));
+                                                            System.Convert.ToSingle(brokenString[3]));
                                 v++;
                                 break;
                             case "vt":
@@ -201,21 +194,26 @@ namespace Assets.Scripts
                             case "vc":
                                 break;
                             case "f":
-
                                 int j = 1;
                                 List<int> intArray = new List<int>();
                                 while (j < brokenString.Length && ("" + brokenString[j]).Length > 0)
                                 {
                                     Vector3 temp = new Vector3();
                                     brokenBrokenString = brokenString[j].Split(splitIdentifier2, 3);    //Separate the face into individual components (vert, uv, normal)
-                                    temp.x = System.Convert.ToInt32(brokenBrokenString[0]);
+                                    temp.x = System.Convert.ToInt32(brokenBrokenString[0]) - faceSubtract;
+                                    if (_isFirst)
+                                    {
+                                        faceSubtract = System.Convert.ToInt32(temp.x) - 1;
+                                        temp.x = 1;
+                                        _isFirst = false;
+                                    }
                                     if (brokenBrokenString.Length > 1)                                  //Some .obj files skip UV and normal
                                     {
                                         if (brokenBrokenString[1] != "")                                    //Some .obj files skip the uv and not the normal
                                         {
-                                            temp.y = System.Convert.ToInt32(brokenBrokenString[1]);
+                                            temp.y = System.Convert.ToInt32(brokenBrokenString[1]) - faceSubtract;
                                         }
-                                        temp.z = System.Convert.ToInt32(brokenBrokenString[2]);
+                                        temp.z = System.Convert.ToInt32(brokenBrokenString[2]) - faceSubtract;
                                     }
                                     j++;
 

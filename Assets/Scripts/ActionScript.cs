@@ -29,11 +29,12 @@ namespace Assets.Scripts
 
         public void TappedStartScan()
         {
-            if (!ViewManager.RecordingView.activeSelf)
-            {
-                ViewManager.InitializeRecording();
-            }
+            //if (!ViewManager.RecordingView.activeSelf)
+            //{
+            //    ViewManager.InitializeRecording();
+            //}
             SpatialUnderstanding.Instance.RequestBeginScanning();
+            Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
         }
 
         public void TappedReset()

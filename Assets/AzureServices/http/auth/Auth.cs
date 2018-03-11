@@ -24,7 +24,20 @@ namespace Azure.StorageServices {
       return request;
     }
 
-    public static StorageRequest GetAuthorizedStorageRequest(StorageServiceClient client, string resourcePath = "", Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null, int contentLength = 0) {
+    public static StorageRequest CreateAuthorizedStorageRequest(StorageServiceClient client, Method method, byte[] data, string resourcePath = "", Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null, int contentLength = 0)
+        {
+            if (data == null)
+            {
+                throw new ArgumentNullException();
+            }
+
+            string requestUrl = RequestUrl(client, queryParams, resourcePath);
+            StorageRequest request = new StorageRequest(requestUrl, method, data);
+            request.AuthorizeRequest(client, method, resourcePath, queryParams, headers, contentLength);
+            return request;
+    }
+
+        public static StorageRequest GetAuthorizedStorageRequest(StorageServiceClient client, string resourcePath = "", Dictionary<string, string> queryParams = null, Dictionary<string, string> headers = null, int contentLength = 0) {
       return CreateAuthorizedStorageRequest(client, Method.GET, resourcePath, queryParams, headers, contentLength);
     }
 

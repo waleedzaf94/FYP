@@ -1,6 +1,7 @@
 ﻿using Azure.StorageServices;
 using HoloToolkit.Unity.SpatialMapping;
 using RESTClient;
+using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
 
@@ -29,13 +30,14 @@ namespace Assets.Scripts
         private PopulateLibrary LibraryManager;
         [SerializeField]
         private MeshRenderScript MeshRenderHolder;
-
+        private string currentFile;
 
         void Start()
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
             blobService = client.GetBlobService();
             GetBlobList();
+            currentFile = ""; 
         }
 
         public void PutObjectBlob(string localPath)
@@ -43,7 +45,17 @@ namespace Assets.Scripts
             string filename = Path.GetFileName(localPath);
             string stringArray = File.ReadAllText(localPath);
             Debug.Log("filename gotten: " + filename);
+            SpatialUnderstandingState.Instance.SaveStarted(true);
             StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, InputContainer, filename));
+        }
+
+        private void PutObjectCompleted(RestResponse obj)
+        {
+            Debug.Log("Status Code: " + obj.StatusCode);
+            Debug.Log(obj.Content);
+            if (obj.IsError)
+                Debug.Log(obj.ErrorMessage);
+            SpatialUnderstandingState.Instance.SaveComplete(true);
         }
 
         internal void GetBlobList()
@@ -53,8 +65,13 @@ namespace Assets.Scripts
 
         internal void GetBlobAsText(string filename)
         {
+            if (currentFile.Equals(filename))
+            {
+                return;
+            }
             string resourcePath = OutputContainer + "/" + filename;
             Label.text = "Loading Mesh...";
+            currentFile = filename;
             StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
         }
 
@@ -65,18 +82,13 @@ namespace Assets.Scripts
                 Debug.Log(response.ErrorMessage + " Error getting blob:" + response.Content);
                 return;
             }
-            Debug.Log("Get blob:" + response.Content.Length);
+            Debug.Log("Received blob:" + response.Content.Length);
             string filename = MeshSaver.SaveStringAsTemporaryMesh(response.Content);
             Debug.Log("Mesh Saved At " + filename);
             MeshRenderHolder.Filename = filename;
         }
 
-        public void PutObjectCompleted(RestResponse obj)
-        {
-            Debug.Log(obj.StatusCode);
-            if (obj.IsError)
-                Debug.Log(obj.ErrorMessage);
-        }
+
 
         private void ListBlobsCompleted(IRestResponse<BlobResults> response)
         {

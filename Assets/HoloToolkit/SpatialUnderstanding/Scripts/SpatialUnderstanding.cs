@@ -171,7 +171,7 @@ namespace HoloToolkit.Unity
         /// </summary>
         public void RequestBeginScanning()
         {
-            if (ScanState == ScanStates.None)
+            if (ScanState == ScanStates.None || ScanState == ScanStates.Done)
             {
                 ScanState = ScanStates.ReadyToScan;
             }
