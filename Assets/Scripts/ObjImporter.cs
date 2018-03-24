@@ -1,12 +1,14 @@
-﻿using UnityEngine;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-//using UnityEditor;
+using UnityEngine;
+#if !UNITY_EDITOR
+using System.Threading.Tasks;
+#endif
 
 namespace Assets.Scripts
 {
 
-    public class ObjImporter
+    public static class ObjImporter
     {
 
         private struct meshStruct
@@ -23,41 +25,54 @@ namespace Assets.Scripts
             public string name;
             public string fileName;
         }
-
+#if !UNITY_EDITOR
         // Use this for initialization
-        public Mesh ImportFile(string meshInfo)
+        public static Mesh ImportFileAsync(string meshInfo)
         {
-            meshStruct newMesh = createMeshStruct(meshInfo);
-            populateMeshStruct(ref newMesh, meshInfo);
-            
-            Vector3[] newVerts = new Vector3[newMesh.faceData.Length];
-            Vector2[] newUVs = new Vector2[newMesh.faceData.Length];
-            Vector3[] newNormals = new Vector3[newMesh.faceData.Length];
-            int i = 0;
-            /* The following foreach loops through the facedata and assigns the appropriate vertex, uv, or normal
-                * for the appropriate Unity mesh array.
-                */
+            //return Task.Factory.StartNew(() =>
+            //{
+                Mesh mesh = new Mesh();
 
-            foreach (Vector3 v in newMesh.faceData)
-            {
-                newVerts[i] = newMesh.vertices[(int)v.x - 1];
-                //if (v.y >= 1)
-                //    newUVs[i] = newMesh.uv[(int)v.y - 1];
-                if (v.z >= 1)
-                    newNormals[i] = newMesh.normals[(int)v.z - 1];
-                i++;
-            }
+                Debug.Log("Running Asncy Task");
+                meshStruct newMesh = createMeshStruct(meshInfo);
+                populateMeshStruct(ref newMesh, meshInfo);
 
-            Mesh mesh = new Mesh();
+                Vector3[] newVerts = new Vector3[newMesh.faceData.Length];
+                Vector2[] newUVs = new Vector2[newMesh.faceData.Length];
+                Vector3[] newNormals = new Vector3[newMesh.faceData.Length];
+                int i = 0;
+                /* The following foreach loops through the facedata and assigns the appropriate vertex, uv, or normal
+                    * for the appropriate Unity mesh array.
+                    */
 
-            mesh.vertices = newVerts;
-            mesh.name = newMesh.fileName;
-            //mesh.uv = newUVs;
-            mesh.normals = newNormals;
-            mesh.triangles = newMesh.triangles;
-            mesh.RecalculateNormals();
-            mesh.RecalculateBounds();
-            return mesh;
+                foreach (Vector3 v in newMesh.faceData)
+                {
+                    newVerts[i] = newMesh.vertices[(int)v.x - 1];
+                    //if (v.y >= 1)
+                    //    newUVs[i] = newMesh.uv[(int)v.y - 1];
+                    if (v.z >= 1)
+                        newNormals[i] = newMesh.normals[(int)v.z - 1];
+                    i++;
+                }
+
+                mesh.vertices = newVerts;
+                mesh.name = newMesh.fileName;
+                //mesh.uv = newUVs;
+                mesh.normals = newNormals;
+                mesh.triangles = newMesh.triangles;
+
+                Debug.Log("Finished Thread");
+
+                mesh.RecalculateNormals();
+                mesh.RecalculateBounds();
+                return mesh;
+            //});
+        }
+#endif
+
+        public static Mesh ImportFile(string meshInfo)
+        {
+            return null;
         }
 
         private static meshStruct createMeshStruct(string meshInfo)

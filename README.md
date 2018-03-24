@@ -16,10 +16,10 @@ Two features:
 - [ ] Extra Info For Mesh
 
 ### Issues 
-- [ ] Older mesh is not getting destroyed
-- [ ] Reset and Restart Recording View
-
+- [x] Older mesh is not getting destroyed
+- [x] Reset and Restart Recording View: Reset happens properly when it is in ScanState == Scanning otherwise, mesh is not destroyed. 
+    
 ### Improvements 
 - [ ] Make the Library better 
-- [ ] Loading Screens 
-- [ ] Make mesh generation async 
+- [x] Loading Screens 
+- [ ] Make mesh generation async - Need to figure this out 

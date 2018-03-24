@@ -1,4 +1,5 @@
 ﻿using Azure.StorageServices;
+using HoloToolkit.Unity;
 using HoloToolkit.Unity.SpatialMapping;
 using RESTClient;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    class StorageService : MonoBehaviour
+    class StorageService : Singleton<StorageService>
     {
         [Header("Azure Storage Service")]
         [SerializeField]
@@ -32,6 +33,17 @@ namespace Assets.Scripts
         private MeshRenderScript MeshRenderHolder;
         private string currentFile;
 
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         void Start()
         {
             client = StorageServiceClient.Create(storageAccount, accessKey);
@@ -45,7 +57,6 @@ namespace Assets.Scripts
             string filename = Path.GetFileName(localPath);
             string stringArray = File.ReadAllText(localPath);
             Debug.Log("filename gotten: " + filename);
-            SpatialUnderstandingState.Instance.SaveStarted(true);
             StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, InputContainer, filename));
         }
 
@@ -53,9 +64,9 @@ namespace Assets.Scripts
         {
             Debug.Log("Status Code: " + obj.StatusCode);
             Debug.Log(obj.Content);
+            DebugDialog.Instance.PrimaryText = "Mesh Saved Successfully!";
             if (obj.IsError)
                 Debug.Log(obj.ErrorMessage);
-            SpatialUnderstandingState.Instance.SaveComplete(true);
         }
 
         internal void GetBlobList()
@@ -67,8 +78,10 @@ namespace Assets.Scripts
         {
             if (currentFile.Equals(filename))
             {
+                ViewManager.Instance.InitializeVisualization();
                 return;
             }
+            DebugDialog.Instance.PrimaryText = "Retrieving Mesh...";
             string resourcePath = OutputContainer + "/" + filename;
             Label.text = "Loading Mesh...";
             currentFile = filename;
@@ -85,6 +98,7 @@ namespace Assets.Scripts
             Debug.Log("Received blob:" + response.Content.Length);
             string filename = MeshSaver.SaveStringAsTemporaryMesh(response.Content);
             Debug.Log("Mesh Saved At " + filename);
+            DebugDialog.Instance.PrimaryText = "Generating Mesh...";
             MeshRenderHolder.Filename = filename;
         }
 

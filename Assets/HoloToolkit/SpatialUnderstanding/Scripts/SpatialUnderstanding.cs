@@ -120,7 +120,6 @@ namespace HoloToolkit.Unity
         protected override void Awake()
         {
             base.Awake();
-
             // Cache references to required component
             UnderstandingDLL = new SpatialUnderstandingDll();
             UnderstandingSourceMesh = GetComponent<SpatialUnderstandingSourceMesh>();
@@ -266,6 +265,11 @@ namespace HoloToolkit.Unity
                 ScanState = ScanStates.Done;
                 if (OnScanDone != null) OnScanDone.Invoke();
             }
+        }
+
+        public static implicit operator SpatialUnderstanding(GameObject v)
+        {
+            throw new NotImplementedException();
         }
     }
 }

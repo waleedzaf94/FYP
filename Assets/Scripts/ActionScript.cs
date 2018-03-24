@@ -7,25 +7,16 @@ namespace Assets.Scripts
 {
     class ActionScript : MonoBehaviour
     {
-        [Header("Services")]
-        [Tooltip("Attach the Azure Service Here")]
-        public StorageService storage;
-        [Tooltip("Attach the Vie Manager Here")]
-        public ViewManager ViewManager;
-
         private string localPath;
-        private RoomSaver roomSaver;
+        [SerializeField]
+        public SpatialUnderstanding spatial;
 
+       
 
-        void Start()
+        private void Start()
         {
-            roomSaver = gameObject.AddComponent<RoomSaver>();
+            Debug.Log("Initialized Action Script");
         }
-
-        void Update()
-        {
-        }
-
 
         public void TappedStartScan()
         {
@@ -33,6 +24,16 @@ namespace Assets.Scripts
             //{
             //    ViewManager.InitializeRecording();
             //}
+            SpatialUnderstanding instance;
+            if (!SpatialUnderstanding.IsInitialized)
+            {
+                instance = Instantiate(spatial);
+            }
+            else
+            {
+                instance = SpatialUnderstanding.Instance;
+
+            }
             SpatialUnderstanding.Instance.RequestBeginScanning();
             Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
         }
@@ -40,14 +41,14 @@ namespace Assets.Scripts
         public void TappedReset()
         {
             Debug.Log("Tapped Reset");
-            ViewManager.ResetMesh();
+            ViewManager.Instance.ResetMesh();
         }
 
         public void TappedLibrary()
         {
-            ViewManager.InitializeLibrary();
-            storage.GetBlobList();
-            if (SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
+            ViewManager.Instance.InitializeLibrary();
+            StorageService.Instance.GetBlobList();
+            if (SpatialUnderstanding.IsInitialized && SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
             {
                 SpatialUnderstanding.Instance.RequestFinishScan();
             }
@@ -57,12 +58,14 @@ namespace Assets.Scripts
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
-                roomSaver.fileName = "mesh_save_test" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                Debug.Log("Saving to file" + roomSaver.fileName);
-                roomSaver.anchorStoreName = "mesh_test_anchor";
-                localPath = roomSaver.SaveRoom();
+                DebugDialog.Instance.PrimaryText = "Saving Mesh...";
+                RoomSaver.Instance.fileName = "mesh_save_test" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
+                Debug.Log("Room Saver is Initialized");
+                Debug.Log("Saving to file" + RoomSaver.Instance.fileName);
+                RoomSaver.Instance.anchorStoreName = "mesh_test_anchor";
+                localPath = RoomSaver.Instance.SaveRoom();
                 Debug.Log("File Name: " + localPath);
-                storage.PutObjectBlob(localPath);
+                StorageService.Instance.PutObjectBlob(localPath);
             }
         }
 
@@ -77,7 +80,7 @@ namespace Assets.Scripts
 
         public void TappedTestObject()
         {
-            ViewManager.InitializeVisualization();
+            ViewManager.Instance.InitializeVisualization();
         }
 
         public void TappedHelp()
@@ -87,17 +90,17 @@ namespace Assets.Scripts
 
         public void TappedRecordingView()
         {
-            ViewManager.InitializeRecording();
+            ViewManager.Instance.InitializeRecording();
         }
 
         public void TappedRefresh()
         {
-            storage.GetBlobList();
+            StorageService.Instance.GetBlobList();
         }
 
         public void TappedBackToLibrary()
         {
-            ViewManager.InitializeLibrary();
+            ViewManager.Instance.InitializeLibrary();
         }
 
 

@@ -11,15 +11,10 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     public float MinHorizAreaForComplete = 10.0f;
     public float MinWallAreaForComplete = 35.0f;
 
-    private int counter = 0;
-
     private uint trackedHandsCount = 0;
 
     public TextMesh DebugDisplay;
     public TextMesh DebugSubDisplay;
-
-
-
 
     private bool _triggered = false;
     public bool HideText = false;
@@ -27,7 +22,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private bool ready = false;
 
     private string _spaceQueryDescription;
-    private bool _timeToHideMesh;
     private bool _isSaveCompleted = false;
     // private RoomSaver roomSaver;
 
@@ -85,14 +79,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             if (!string.IsNullOrEmpty(SpaceQueryDescription))
             {
                 return SpaceQueryDescription;
-            }
-            if (_saveStarted)
-            {
-                return "Save Started";
-            }
-            if (_isSaveCompleted)
-            {
-                return "Save Complete";
             }
             // Scan state
             if (SpatialUnderstanding.Instance.AllowSpatialUnderstanding)
@@ -185,20 +171,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
     }
 
-    internal void SaveStarted(bool v)
-    {
-        _saveStarted = v;
-    }
-
-    internal void SaveComplete(bool value)
-    {
-        SaveStarted(false);
-        Debug.Log("Save Complete");
-        _isSaveCompleted = value;
-    }
-
-    public bool _saveStarted { get; private set; }
-
     private void Update_DebugDisplay()
     {
         // Basic checks
@@ -219,6 +191,12 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private void Update()
     {
         // Updates
+        SpatialUnderstanding g = null;
+        if (!SpatialUnderstanding.IsInitialized)
+        {
+            g = SpatialUnderstanding.Instance;
+        }
+
         if (SpatialUnderstanding.Instance != null)
         {
             Update_DebugDisplay();
@@ -227,10 +205,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                 _triggered = true;
                 ready = false;
             }
-        }
-        else
-        {
-            //SpatialUnderstanding.Awake();
         }
     }
 

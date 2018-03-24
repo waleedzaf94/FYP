@@ -5,26 +5,4 @@
 # Write a line equal to 'overwrite-all' (without quotes) to overwrite everything (preserved accross builds)
 # Write a line equal to 'keep-all' (without quotes) to keep files regardless their modification (preserved accross builds)
 # Default behavior is to never overwrite files
-NewSpatial.sln: modified
-GeneratedProjects\UWP\Assembly-CSharp\project.json: 4FCF72A4D5EDB37E24C206A7BCFE7AF1
-NewSpatial\App.cs: modified
-NewSpatial\NewSpatial.csproj: modified
-NewSpatial\NewSpatial.csproj.user: modified
-NewSpatial\Package.appxmanifest: 4D5166C09ED48A66641096F415C7FFFC
-NewSpatial\project.json: 1D02BC64BAC0D041019673A1C4C51737
-NewSpatial\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
-NewSpatial\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
-NewSpatial\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
-NewSpatial\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
-NewSpatial\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
-NewSpatial\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
-NewSpatial\bin\x86\Release\AppX\Assets\SplashScreen.scale-200.png: 60618416282ED104FD1473935716045D
-NewSpatial\bin\x86\Release\AppX\Assets\Square150x150Logo.scale-200.png: E02834B4A5DFB97FF8E212C1CACBB084
-NewSpatial\bin\x86\Release\AppX\Assets\Square44x44Logo.scale-200.png: 6C6EF27184ABE9D870A9D564953775DE
-NewSpatial\bin\x86\Release\AppX\Assets\Square44x44Logo.targetsize-24_altform-unplated.png: 156637F7B5363E983E7A46D8E533A23D
-NewSpatial\bin\x86\Release\AppX\Assets\StoreLogo.png: 90BD194CA4A7CFFF3E8B8222229857FB
-NewSpatial\bin\x86\Release\AppX\Assets\Wide310x150Logo.scale-200.png: C96846A80DF667F87355569CD816192D
-NewSpatial\bin\x86\Release\AppX\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
-NewSpatial\obj\x86\Release\NewSpatial.csproj.CopyComplete: D41D8CD98F00B204E9800998ECF8427E
-NewSpatial\Properties\AssemblyInfo.cs: modified
-NewSpatial\Properties\Default.rd.xml: 72EB282657164E79A1C42F6240984826
+keep-all

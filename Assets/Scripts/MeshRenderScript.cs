@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
+#if !UNITY_EDITOR
+using System.Threading.Tasks;
+#endif
 using UnityEngine;
 
 
@@ -9,16 +11,12 @@ namespace Assets.Scripts
 {
     class MeshRenderScript : MonoBehaviour
     {
-
-
         [Header("Hologram")]
         public GameObject MeshHolder;
-        public Material[] MeshMaterials;
-        public MeshFilter MeshFilterPrefab;
+        public Material MeshMaterial;
 
         private string meshStringList;
         private List<Mesh> meshList;
-        private List<GameObject> previousObjects;
         public string Filename {
             get {
                 return meshStringList;
@@ -37,7 +35,6 @@ namespace Assets.Scripts
         {
             meshList = new List<Mesh>();
             _filechanged = false;
-            previousObjects = new List<GameObject>();
         }
 
         // Update is called once per frame
@@ -57,32 +54,29 @@ namespace Assets.Scripts
                 {
                     Destroy(child.gameObject);
                 }
-                foreach (GameObject g in previousObjects)
-                {
-                    Debug.Log(g.name);
-                    Destroy(g.gameObject);
-                }
-                previousObjects.Clear();
                 List<string> meshStringList = splitMesh(Filename);
-                foreach (string meshString in meshStringList)
+#if !UNITY_EDITOR
+                var meshBag = new ConcurrentBag<Mesh>();
+                List<Task> taskList = new List<Task>();
+                meshStringList.ForEach(i =>
                 {
-                    meshList.Add(new ObjImporter().ImportFile(meshString));
-                }
-                foreach(Mesh m in meshList)
-                {
-                    GameObject go = new GameObject("ParentPrefab" + m.name);
+                    GameObject go = new GameObject("ParentPrefab" + i.Substring(0,10));
+                    Mesh m = ObjImporter.ImportFileAsync(i);
                     MeshFilter mf = go.AddComponent<MeshFilter>();
                     BoxCollider bc = go.AddComponent<BoxCollider>();
                     bc.center = Vector3.zero;
                     go.transform.SetParent(MeshHolder.transform, false);
                     MeshRenderer mr = go.AddComponent<MeshRenderer>();
-                    mr.material = MeshMaterials[0];
+                    mr.material = MeshMaterial;
                     mr.allowOcclusionWhenDynamic = true;
                     mr.receiveShadows = true;
                     mf.mesh = m;
-                    previousObjects.Add(go);
-                }
+                });
+#endif
+                DebugDialog.Instance.ClearText();
+                ViewManager.Instance.InitializeVisualization();
             }
+
         }
 
         private List<string> splitMesh(string filePath)

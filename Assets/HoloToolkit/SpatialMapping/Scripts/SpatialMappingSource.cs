@@ -272,7 +272,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// </summary>
         /// <param name="destroyGameObjects">True to destroy the game objects of each surface, false otherwise.</param>
         /// <param name="destroyMeshes">True to destroy the meshes of each surface, false otherwise.</param>
-        public void Cleanup(bool destroyGameObjects = true, bool destroyMeshes = true)
+        protected void Cleanup(bool destroyGameObjects = true, bool destroyMeshes = true)
         {
             var handlers = RemovingAllSurfaces;
             if (handlers != null)

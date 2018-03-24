@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    class ViewManager : MonoBehaviour
+    class ViewManager : Singleton<ViewManager>
     {
         public GameObject LibraryView;
         public GameObject RecordingView;
@@ -18,6 +18,16 @@ namespace Assets.Scripts
         public SpatialUnderstandingCustomMesh SpatialUnderstandingMesh;
         public Material OccludedMaterial;
         public Material MeshMaterial;
+
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
 
         private void Start()
         {
@@ -51,8 +61,9 @@ namespace Assets.Scripts
 
         public void InitializeLibrary()
         {
+            DebugDialog.Instance.ClearText();
             Debug.Log("Library View Called");
-            HideMesh();
+            _timeToHideMesh = true;
             RecordingView.SetActive(false);
             //ToggleChildren(RecordingView, true);
             VisualizationView.SetActive(false);
@@ -61,7 +72,8 @@ namespace Assets.Scripts
 
         public void InitializeVisualization()
         {
-            HideMesh();
+            DebugDialog.Instance.ClearText();
+            _timeToHideMesh = true;
             Debug.Log("Visualization View Called");
             RecordingView.SetActive(false);
             VisualizationView.SetActive(true);
@@ -70,6 +82,7 @@ namespace Assets.Scripts
 
         public void InitializeRecording()
         {
+            DebugDialog.Instance.ClearText();
             Debug.Log("Recording View Called");
             _timeToHideMesh = false;
             //ResetMesh();
@@ -77,32 +90,30 @@ namespace Assets.Scripts
             RecordingView.SetActive(true);
             VisualizationView.SetActive(false);
             LibraryView.SetActive(false);
-            SpatialUnderstandingState.Instance.SaveComplete(false);
         }
 
         public void HideMesh()
         {
+            Debug.Log("Calling Hide");
+
             SpatialUnderstandingMesh.DrawProcessedMesh = false;
             //SpatialUnderstanding.Instance.UnderstandingCustomMesh.MeshMaterial = OccludedMaterial;
             //SpatialUnderstandingMesh.MeshMaterial = OccludedMaterial;
-            Debug.Log("Calling Hide");
             //_timeToHideMesh = false;
         }
 
         public void ShowMesh()
-        {
-            SpatialUnderstandingMesh.DrawProcessedMesh = true;
-
-            SpatialUnderstandingMesh.MeshMaterial = MeshMaterial;
+        {           
             Debug.Log("Calling Show");
+            SpatialUnderstandingMesh.DrawProcessedMesh = true;
         }
 
         public void ResetMesh()
         {
             Debug.Log("Resetting mesh");
             //NEED TO PUT CHECK FOR STATE HERE
-
-            SpatialUnderstanding.Instance.UnderstandingCustomMesh.Cleanup();
+            HideMesh();
+            Destroy(SpatialUnderstanding.Instance);
 
             //SpatialUnderstanding spatial = gameObject.GetComponent<SpatialUnderstanding>();
             //Transform parent = SpatialUnderstandingObject.GetParentRoot().transform;

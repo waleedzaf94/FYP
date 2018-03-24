@@ -10,10 +10,6 @@ namespace Assets.Scripts
 {
     class PopulateLibrary : MonoBehaviour
     {
-
-        [Header("Azure Storage Service")]
-        public StorageService StorageService;
-
         private List<Blob> blobList;
         private bool _loaded;
         public Button prefab;
@@ -56,17 +52,19 @@ namespace Assets.Scripts
         private void MakePrefab(Blob obj)
         {
             Button newObject;
-            newObject = Instantiate(prefab, transform);
-            newObject.GetComponent<Button>().GetComponentInChildren<Text>().text = obj.Name;
-            newObject.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(obj));
-            Debug.Log("Prefab Generated");
+            if (prefab != null && obj != null && obj.Name.Length > 0)
+            {
+                newObject = Instantiate(prefab, transform);
+                newObject.GetComponent<Button>().GetComponentInChildren<Text>().text = obj.Name;
+                newObject.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(obj));
+                Debug.Log("Prefab Generated");
+            }
         }
 
         private void ObjectClicked(Blob selectedBlob)
         {
             Debug.Log("Selected: " + selectedBlob.Name);
-            StorageService.GetBlobAsText(selectedBlob.Name);
+            StorageService.Instance.GetBlobAsText(selectedBlob.Name);
         }
     }
-
 }
