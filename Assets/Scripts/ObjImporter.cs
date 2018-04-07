@@ -32,8 +32,6 @@ namespace Assets.Scripts
             //return Task.Factory.StartNew(() =>
             //{
                 Mesh mesh = new Mesh();
-
-                Debug.Log("Running Asncy Task");
                 meshStruct newMesh = createMeshStruct(meshInfo);
                 populateMeshStruct(ref newMesh, meshInfo);
 
@@ -60,9 +58,6 @@ namespace Assets.Scripts
                 //mesh.uv = newUVs;
                 mesh.normals = newNormals;
                 mesh.triangles = newMesh.triangles;
-
-                Debug.Log("Finished Thread");
-
                 mesh.RecalculateNormals();
                 mesh.RecalculateBounds();
                 return mesh;

@@ -1,4 +1,7 @@
-﻿using System.Collections.Concurrent;
+﻿using HoloToolkit.Unity;
+using HoloToolkit.Unity.InputModule;
+using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
 #if !UNITY_EDITOR
@@ -9,7 +12,7 @@ using UnityEngine;
 
 namespace Assets.Scripts
 {
-    class MeshRenderScript : MonoBehaviour
+    class MeshRenderScript : Singleton<MeshRenderScript>
     {
         [Header("Hologram")]
         public GameObject MeshHolder;
@@ -17,6 +20,9 @@ namespace Assets.Scripts
 
         private string meshStringList;
         private List<Mesh> meshList;
+        private bool _rotateX;
+        private bool _rotateY;
+
         public string Filename {
             get {
                 return meshStringList;
@@ -28,6 +34,16 @@ namespace Assets.Scripts
             }
         }
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
         private bool _filechanged;
 
         // Use this for initialization
@@ -35,12 +51,27 @@ namespace Assets.Scripts
         {
             meshList = new List<Mesh>();
             _filechanged = false;
+            _rotateX = false;
+            _rotateY = false;
         }
 
         // Update is called once per frame
         void Update()
         {
             Update_Mesh();
+            Rotate_Mesh();
+        }
+
+        private void Rotate_Mesh()
+        {
+            if (_rotateX)
+            {
+                MeshHolder.transform.Rotate(Vector3.up * Time.deltaTime * 5);
+            }
+            if (_rotateY)
+            {
+                MeshHolder.transform.Rotate(Vector3.right * Time.deltaTime * 5);
+            }
         }
 
         private void Update_Mesh()
@@ -48,20 +79,22 @@ namespace Assets.Scripts
             if (_filechanged)
             {
                 _filechanged = false;
+                DebugDialog.Instance.PrimaryText = "Generating Mesh...";
 
-                //Instantiate(ObjLoader.CreateMeshObject(MeshMaterials[0]), transform);
-                foreach (Transform child in MeshHolder.transform)
+                Component[] previous = MeshHolder.GetComponentsInChildren<MeshRenderer>();
+                foreach (Component comp in previous)
                 {
-                    Destroy(child.gameObject);
+                    //Debug.Log("Destroying..." + comp.name);
+                    Destroy(comp.gameObject);
                 }
                 List<string> meshStringList = splitMesh(Filename);
 #if !UNITY_EDITOR
-                var meshBag = new ConcurrentBag<Mesh>();
-                List<Task> taskList = new List<Task>();
+                int j = 0;
                 meshStringList.ForEach(i =>
                 {
-                    GameObject go = new GameObject("ParentPrefab" + i.Substring(0,10));
                     Mesh m = ObjImporter.ImportFileAsync(i);
+                    GameObject go = new GameObject("ParentPrefab" + i.Substring(0, 10));
+                    GazeStabilizer stab = go.AddComponent<GazeStabilizer>();
                     MeshFilter mf = go.AddComponent<MeshFilter>();
                     BoxCollider bc = go.AddComponent<BoxCollider>();
                     bc.center = Vector3.zero;
@@ -71,10 +104,12 @@ namespace Assets.Scripts
                     mr.allowOcclusionWhenDynamic = true;
                     mr.receiveShadows = true;
                     mf.mesh = m;
+                    j++;
                 });
+                Debug.Log("Parent Generated");
+                GazeStabilizer stabalizer = MeshHolder.AddComponent<GazeStabilizer>();
 #endif
                 DebugDialog.Instance.ClearText();
-                ViewManager.Instance.InitializeVisualization();
             }
 
         }
@@ -93,6 +128,20 @@ namespace Assets.Scripts
                 }
             }
             return submeshInfo;
+        }
+
+        internal void ToggleRotate(string axis)
+        {
+            if (axis=="x")
+            {
+                _rotateX = !_rotateX;
+                _rotateY = false;
+            }
+            if (axis=="y")
+            {
+                _rotateX = false;
+                _rotateY = !_rotateY;
+            }
         }
     }
 

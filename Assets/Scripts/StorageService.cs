@@ -26,11 +26,7 @@ namespace Assets.Scripts
 
         [Header("Library Fields")]
         [SerializeField]
-        private TextMesh Label;
-        [SerializeField]
         private PopulateLibrary LibraryManager;
-        [SerializeField]
-        private MeshRenderScript MeshRenderHolder;
         private string currentFile;
 
 
@@ -81,11 +77,13 @@ namespace Assets.Scripts
                 ViewManager.Instance.InitializeVisualization();
                 return;
             }
-            DebugDialog.Instance.PrimaryText = "Retrieving Mesh...";
-            string resourcePath = OutputContainer + "/" + filename;
-            Label.text = "Loading Mesh...";
-            currentFile = filename;
-            StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
+            else
+            {
+                DebugDialog.Instance.PrimaryText = "Retrieving Mesh...";
+                string resourcePath = OutputContainer + "/" + filename;
+                currentFile = filename;
+                StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
+            }
         }
 
         private void GetTextBlobComplete(RestResponse response)
@@ -98,11 +96,9 @@ namespace Assets.Scripts
             Debug.Log("Received blob:" + response.Content.Length);
             string filename = MeshSaver.SaveStringAsTemporaryMesh(response.Content);
             Debug.Log("Mesh Saved At " + filename);
-            DebugDialog.Instance.PrimaryText = "Generating Mesh...";
-            MeshRenderHolder.Filename = filename;
+            MeshRenderScript.Instance.Filename = filename;
+            ViewManager.Instance.InitializeVisualization();
         }
-
-
 
         private void ListBlobsCompleted(IRestResponse<BlobResults> response)
         {

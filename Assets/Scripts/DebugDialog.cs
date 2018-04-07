@@ -38,6 +38,7 @@ public class DebugDialog : Singleton<DebugDialog> {
 
     internal void ClearText()
     {
+        Debug.Log("clearing text");
         PrimaryText = String.Empty;
     }
 }

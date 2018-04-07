@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using Azure.StorageServices;
 using UnityEngine;
 using UnityEngine.UI;
@@ -54,8 +55,9 @@ namespace Assets.Scripts
             Button newObject;
             if (prefab != null && obj != null && obj.Name.Length > 0)
             {
+                string name = Path.GetFileNameWithoutExtension(obj.Name);
                 newObject = Instantiate(prefab, transform);
-                newObject.GetComponent<Button>().GetComponentInChildren<Text>().text = obj.Name;
+                newObject.GetComponent<Button>().GetComponentInChildren<Text>().text = name;
                 newObject.GetComponent<Button>().onClick.AddListener(() => ObjectClicked(obj));
                 Debug.Log("Prefab Generated");
             }

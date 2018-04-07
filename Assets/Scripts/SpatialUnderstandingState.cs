@@ -22,8 +22,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     private bool ready = false;
 
     private string _spaceQueryDescription;
-    private bool _isSaveCompleted = false;
-    // private RoomSaver roomSaver;
 
     public string SpaceQueryDescription
     {
@@ -67,7 +65,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
     }
 
-   
     public string PrimaryText
     {
         get
@@ -140,6 +137,9 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     {
         get
         {
+            if (HideText)
+                return string.Empty;
+
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.None)
             {
                 return "";
