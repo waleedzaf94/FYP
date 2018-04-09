@@ -4,15 +4,15 @@
 PlayerSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 13
-  productGUID: 7fbca68389fb6b340bbdae8730af38bb
+  productGUID: 4f23171cfdeebcf499ad64a224d7665f
   AndroidProfiler: 0
   AndroidFilterTouchesWhenObscured: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: NewSpatial
+  companyName: FYP17010
+  productName: HISS
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -75,7 +75,7 @@ PlayerSettings:
   hideHomeButton: 0
   submitAnalytics: 1
   usePlayerLog: 1
-  bakeCollisionMeshes: 0
+  bakeCollisionMeshes: 1
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
@@ -130,7 +130,7 @@ PlayerSettings:
   bundleVersion: 1.0
   preloadedAssets: []
   metroInputSource: 0
-  m_HolographicPauseOnTrackingLoss: 1
+  m_HolographicPauseOnTrackingLoss: 0
   xboxOneDisableKinectGpuReservation: 0
   xboxOneEnable7thCore: 0
   vrSettings:
@@ -166,10 +166,10 @@ PlayerSettings:
   CreateWallpaper: 0
   APKExpansionFiles: 0
   keepLoadedShadersAlive: 0
-  StripUnusedMeshComponents: 1
+  StripUnusedMeshComponents: 0
   VertexChannelCompressionMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 238
   iPhoneSdkVersion: 988
   iOSTargetOSVersionString: 7.0
   tvOSSdkVersion: 0
@@ -547,20 +547,20 @@ PlayerSettings:
     Metro: 2
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
-  scriptingRuntimeVersion: 0
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: NewSpatial
+  metroPackageName: FYP
   metroPackageVersion: 1.0.0.0
   metroCertificatePath: Assets/WSATestCertificate.pfx
   metroCertificatePassword: 
   metroCertificateSubject: DefaultCompany
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 00ad650643bed401
-  metroApplicationDescription: NewSpatial
+  metroApplicationDescription: FYP
   wsaImages: {}
-  metroTileShortName: NewSpatial
+  metroTileShortName: HISS
   metroCommandLineArgsFile: 
   metroTileShowName: 0
   metroMediumTileShowName: 0
@@ -580,25 +580,25 @@ PlayerSettings:
       Chat: False
       CodeGeneration: False
       EnterpriseAuthentication: False
-      HumanInterfaceDevice: True
+      HumanInterfaceDevice: False
       InputInjectionBrokered: False
       InternetClient: True
       InternetClientServer: False
       Location: True
       Microphone: True
-      MusicLibrary: True
+      MusicLibrary: False
       Objects3D: True
       PhoneCall: False
-      PicturesLibrary: True
+      PicturesLibrary: False
       PrivateNetworkClientServer: False
-      Proximity: True
-      RemovableStorage: False
+      Proximity: False
+      RemovableStorage: True
       SharedUserCertificates: False
       SpatialPerception: True
-      UserAccountInformation: False
-      VideosLibrary: True
+      UserAccountInformation: True
+      VideosLibrary: False
       VoipCall: False
-      WebCam: False
+      WebCam: True
   metroFTAName: 
   metroFTAFileTypes: []
   metroProtocolName: 
@@ -655,13 +655,12 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled:
-    UNet: 1
+  cloudServicesEnabled: {}
   facebookSdkVersion: 7.9.4
-  apiCompatibilityLevel: 2
-  cloudProjectId: fe340677-0818-4f7f-a1cf-739e54451b43
-  projectName: NewSpatial
-  organizationId: amngupta
+  apiCompatibilityLevel: 3
+  cloudProjectId: 
+  projectName: 
+  organizationId: 
   cloudEnabled: 0
   enableNativePlatformBackendsForNewInputSystem: 0
   disableOldInputManagerSupport: 0

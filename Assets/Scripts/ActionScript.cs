@@ -2,66 +2,119 @@ using UnityEngine;
 using HoloToolkit.Unity;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
     class ActionScript : MonoBehaviour
     {
-        [Header("Services")]
-        [Tooltip("Attach the Azure Service Here")]
-        public StorageService storage;
-        [Tooltip("Attach the Vie Manager Here")]
-        public ViewManager ViewManager;
-
         private string localPath;
-        private RoomSaver roomSaver;
+        [SerializeField]
+        public SpatialUnderstanding spatial;
+        private bool _resetSpatialUnderstanding;
+        private bool _startScan;
 
-
-        void Start()
+        private void Start()
         {
-            roomSaver = gameObject.AddComponent<RoomSaver>();
+            _resetSpatialUnderstanding = false;
         }
 
-        void Update()
+        private void Update()
         {
+            if (_resetSpatialUnderstanding)
+            {
+                ResetScanner();
+            }
+            if (_startScan)
+            {
+                StartScanner();
+            }
         }
 
+        private void StartScanner()
+        {
+            SpatialUnderstandingState.Instance.HideText = false;
+            if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done ||
+                 SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.None
+                )
+            {
+                SpatialUnderstanding.Instance.RequestBeginScanning();
+                _startScan = false;
+            }
+            Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+        }
+
+        private void ResetScanner()
+        {
+            SpatialUnderstandingState.Instance.HideText = true;
+            if ((SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
+               !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
+            {
+                Debug.Log("Resetting Mesh");
+                DebugDialog.Instance.PrimaryText = "Resetting Mesh...";
+                SpatialUnderstanding.Instance.RequestFinishScan();
+            }
+            if
+                (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.ReadyToScan ||
+                    SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done
+                )
+            {
+                ViewManager.Instance.HideMesh();
+                DebugDialog.Instance.PrimaryText = "Reset Complete";
+                Debug.Log("Reset Complete");
+                _resetSpatialUnderstanding = false;
+                Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+            }
+        }
 
         public void TappedStartScan()
         {
-            if (!ViewManager.RecordingView.activeSelf)
-            {
-                ViewManager.InitializeRecording();
-            }
-            SpatialUnderstanding.Instance.RequestBeginScanning();
+            _startScan = true;
+            ViewManager.Instance.ShowMesh();
+            Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
         }
 
         public void TappedReset()
         {
             Debug.Log("Tapped Reset");
-            ViewManager.ResetMesh();
+            _resetSpatialUnderstanding = true;
         }
 
         public void TappedLibrary()
         {
-            ViewManager.InitializeLibrary();
-            storage.GetBlobList();
-            if (SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
+            ViewManager.Instance.InitializeLibrary();
+            //CosmoScript.Instance.QueryMeshCollection();
+            StorageService.Instance.GetBlobList();
+            if (SpatialUnderstanding.IsInitialized && SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
             {
                 SpatialUnderstanding.Instance.RequestFinishScan();
             }
         }
 
-        public void TappedSave()
+        public async void TappedSave()
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
-                roomSaver.fileName = "mesh_save_test" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                Debug.Log("Saving to file" + roomSaver.fileName);
-                roomSaver.anchorStoreName = "mesh_test_anchor";
-                localPath = roomSaver.SaveRoom();
+                // Save the file temporarily
+                DebugDialog.Instance.PrimaryText = "Saving Mesh...";
+                string rowkey = DateTime.Now.ToString("yyyyMMdd");
+                string fn = "mesh_" + rowkey + "T" +DateTime.Now.ToString("HHmm");
+                RoomSaver.Instance.fileName = fn;
+                RoomSaver.Instance.anchorStoreName = "mesh_test_anchor";
+                string localpath = await RoomSaver.Instance.SaveRoomAsync();
                 Debug.Log("File Name: " + localPath);
-                storage.PutObjectBlob(localPath);
+                Debug.Log("MeshInfo " + fn);
+                // Prepare file for push to Azure Storage
+                MeshInfo tempInfo = new MeshInfo(rowkey)
+                {
+                    playspaceStats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats(),
+                    localpath = localpath,
+                    filename = fn+".obj" //Not working Path.GetFileName(localPath)
+                };
+                Debug.Log(tempInfo.filename);
+                Debug.Log("Wall Area " + SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats().WallSurfaceArea);
+                StorageService.Instance.PutObjectBlob(tempInfo);
             }
         }
 
@@ -76,9 +129,48 @@ namespace Assets.Scripts
 
         public void TappedTestObject()
         {
-            ViewManager.InitializeVisualization();
+            ViewManager.Instance.InitializeVisualization();
         }
 
+        public void TappedHologram()
+        {
+        }
+
+        public void TappedHelp()
+        {
+            DebugDialog.Instance.PrimaryText = "Help Opened";
+        }
+
+        public void TappedRecordingView()
+        {
+            ViewManager.Instance.InitializeRecording();
+        }
+
+        public void TappedRefresh()
+        {
+            // CosmoScript.Instance.QueryMeshCollection();
+            StorageService.Instance.GetBlobList();
+        }
+
+        public void TappedBackToLibrary()
+        {
+            ViewManager.Instance.InitializeLibrary();
+        }
+
+        public void TappedMeshInfo()
+        {
+
+        }
+
+        public void TappedRotateX()
+        {
+            MeshRenderScript.Instance.ToggleRotate("x");
+        }
+
+        public void TappedRotateY()
+        {
+            MeshRenderScript.Instance.ToggleRotate("y");
+        }
 
     }
 }

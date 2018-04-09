@@ -24,6 +24,12 @@ namespace RESTClient {
       Request.downloadHandler = new DownloadHandlerBuffer();
     }
 
+    public RestRequest(string url, Method method, byte[] data)
+    {
+        Request = new UnityWebRequest(url, method.ToString());
+        Request.downloadHandler = new DownloadHandlerBuffer();
+    }
+
     public void AddHeader(string key, string value) {
       Request.SetRequestHeader(key, value);
     }
