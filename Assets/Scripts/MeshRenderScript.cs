@@ -19,6 +19,8 @@ namespace Assets.Scripts
         public Material MeshMaterial;
 
         private string meshStringList;
+        private MeshInfo meshInfo;
+        private bool _infoUpdated;
         private List<Mesh> meshList;
         private bool _rotateX;
         private bool _rotateY;
@@ -31,6 +33,14 @@ namespace Assets.Scripts
                 Debug.Log("Filename reset to " + value);
                 meshStringList = value;
                 _filechanged = true;
+            }
+        }
+
+        public MeshInfo MeshInformation {
+            get { return meshInfo; }
+            set {
+                meshInfo = value;
+                _infoUpdated = true;
             }
         }
 
@@ -76,6 +86,10 @@ namespace Assets.Scripts
 
         private void Update_Mesh()
         {
+            if (_infoUpdated )
+            {
+                Debug.Log(MeshInformation.playspaceStats);
+            }
             if (_filechanged)
             {
                 _filechanged = false;

@@ -5,6 +5,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using HoloToolkit.Unity.SpatialMapping;
 using UnityEngine.XR.WSA.Persistence;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
@@ -42,7 +43,7 @@ namespace Assets.Scripts
             anchorStore = store;
         }
 
-        public string SaveRoom()
+        public async Task<string> SaveRoomAsync()
         {
             // if the anchor store is not ready then we cannot save the room mesh
             if (anchorStore == null)
@@ -76,43 +77,15 @@ namespace Assets.Scripts
                 // increase count of meshes in room
                 meshCount++;
 
-                // make mesh name = anchor name + mesh count
                 string meshName = anchorStoreName + meshCount.ToString();
                 filter.mesh.name = meshName;
-
-                //Debug.Log("Mesh " + filter.mesh.name + ": " + filter.transform.position + "\n--- rotation " + filter.transform.localRotation + "\n--- scale: " + filter.transform.localScale);
-                // add mesh to room meshes for serialization
+                
                 roomMeshes.Add(filter.mesh);
-
-                // save world anchor
-                //WorldAnchor attachingAnchor = filter.gameObject.GetComponent<WorldAnchor>();
-                //if (attachingAnchor == null)
-                //{
-                //    attachingAnchor = filter.gameObject.AddComponent<WorldAnchor>();
-                //    Debug.Log("" + filter.mesh.name + ": Using new anchor...");
-                //}
-                //else
-                //{
-                //    Debug.Log("" + filter.mesh.name + ": Deleting existing anchor...");
-                //    DestroyImmediate(attachingAnchor);
-                //    Debug.Log("" + filter.mesh.name + ": Creating new anchor...");
-                //    attachingAnchor = filter.gameObject.AddComponent<WorldAnchor>();
-                //}
-                //if (attachingAnchor.isLocated)
-                //{
-                //    if (!anchorStore.Save(meshName, attachingAnchor))
-                //        Debug.Log("" + meshName + ": Anchor save failed...");
-                //    else
-                //        Debug.Log("" + meshName + ": Anchor SAVED...");
-                //}
-                //else
-                //{
-                //    attachingAnchor.OnTrackingChanged += AttachingAnchor_OnTrackingChanged;
-                //}
             }
-
+            string fullpath = await MeshSaver.SaveAsObjAsync(fileName, roomMeshes);
             // serialize and save meshes
-            return MeshSaver.SaveAsObj(fileName, roomMeshes);
+            Debug.Log("roomsaver" + fullpath);
+            return fullpath;
         }
 
         private void AttachingAnchor_OnTrackingChanged(UnityEngine.XR.WSA.WorldAnchor self, bool located)

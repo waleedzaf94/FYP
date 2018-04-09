@@ -16,7 +16,7 @@ namespace Assets.Scripts
         [SerializeField]
         private string accessKey;
         [SerializeField]
-        private string InputContainer;
+        public string InputContainer;
         [SerializeField]
         private string OutputContainer;
 
@@ -29,6 +29,35 @@ namespace Assets.Scripts
         private PopulateLibrary LibraryManager;
         private string currentFile;
 
+
+        private MeshInfo currentOutputMesh;
+        private MeshInfo currentInputMesh;
+
+        public MeshInfo CurrentInputMesh
+        {
+            get
+            {
+                return currentInputMesh;
+            }
+
+            set
+            {
+                currentInputMesh = value;
+            }
+        }
+
+        public MeshInfo CurrentOutputMesh
+        {
+            get
+            {
+                return currentOutputMesh;
+            }
+
+            set
+            {
+                currentOutputMesh = value;
+            }
+        }
 
         protected override void Awake()
         {
@@ -48,11 +77,14 @@ namespace Assets.Scripts
             currentFile = ""; 
         }
 
-        public void PutObjectBlob(string localPath)
+        public void PutObjectBlob(MeshInfo mesh)
         {
-            string filename = Path.GetFileName(localPath);
-            string stringArray = File.ReadAllText(localPath);
+            CurrentInputMesh = mesh;
+            string filename = mesh.filename;
+            string stringArray = File.ReadAllText(mesh.localpath);
             Debug.Log("filename gotten: " + filename);
+            // This is a lie
+            DebugDialog.Instance.PrimaryText = "Mesh Saved Successfully!";
             StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, InputContainer, filename));
         }
 
@@ -60,14 +92,12 @@ namespace Assets.Scripts
         {
             Debug.Log("Status Code: " + obj.StatusCode);
             Debug.Log(obj.Content);
-            DebugDialog.Instance.PrimaryText = "Mesh Saved Successfully!";
             if (obj.IsError)
                 Debug.Log(obj.ErrorMessage);
-        }
 
-        internal void GetBlobList()
-        {
-            StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, OutputContainer));
+            // TODO find full file url
+            CurrentInputMesh.inputContainer = InputContainer;
+            CurrentInputMesh = null;
         }
 
         internal void GetBlobAsText(string filename)
@@ -79,14 +109,17 @@ namespace Assets.Scripts
             }
             else
             {
+                //string outputContainer = string.IsNullOrEmpty(mesh.outputContainer) ? OutputContainer : mesh.outputContainer  ;
                 DebugDialog.Instance.PrimaryText = "Retrieving Mesh...";
                 string resourcePath = OutputContainer + "/" + filename;
                 currentFile = filename;
-                StartCoroutine(blobService.GetTextBlob(GetTextBlobComplete, resourcePath));
+                //currentOutputMesh = mesh;
+                //MeshRenderScript.Instance.MeshInformation = CurrentOutputMesh;
+                StartCoroutine(blobService.GetTextBlob(GetTextBlobCompleteAsync, resourcePath));
             }
         }
 
-        private void GetTextBlobComplete(RestResponse response)
+        private async void GetTextBlobCompleteAsync(RestResponse response)
         {
             if (response.IsError)
             {
@@ -94,10 +127,16 @@ namespace Assets.Scripts
                 return;
             }
             Debug.Log("Received blob:" + response.Content.Length);
-            string filename = MeshSaver.SaveStringAsTemporaryMesh(response.Content);
+            string filename = await MeshSaver.SaveStringAsTemporaryMeshAsync(response.Content);
             Debug.Log("Mesh Saved At " + filename);
             MeshRenderScript.Instance.Filename = filename;
             ViewManager.Instance.InitializeVisualization();
+        }
+
+
+        internal void GetBlobList()
+        {
+            StartCoroutine(blobService.ListBlobs(ListBlobsCompleted, OutputContainer));
         }
 
         private void ListBlobsCompleted(IRestResponse<BlobResults> response)
@@ -108,15 +147,8 @@ namespace Assets.Scripts
                 Debug.Log("Error on fetch from blob");
                 return;
             }
-
             //Log.Text(label, "Loaded blobs: " + response.Data.Blobs.Length, "Loaded blobs: " + response.Data.Blobs.Length);
-            ReloadBlobList(response.Data.Blobs);
-        }
-
-        private void ReloadBlobList(Blob[] blobs)
-        {
-            //label.text = "Blobs received: " + blobs.Length;
-            LibraryManager.SetBlobs(blobs);
+            LibraryManager.SetBlobs(response.Data.Blobs);
         }
     }
 }

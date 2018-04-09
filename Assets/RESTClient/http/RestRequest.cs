@@ -26,18 +26,8 @@ namespace RESTClient {
 
     public RestRequest(string url, Method method, byte[] data)
     {
-            
-        if (method.Equals(Method.PUT))
-        {
-            Debug.Log("Making PUT Request");
-            Request = UnityWebRequest.Put(url, data);
-            Request.downloadHandler = new DownloadHandlerBuffer();
-        }
-        else
-        {
-            Request = new UnityWebRequest(url, method.ToString());
-            Request.downloadHandler = new DownloadHandlerBuffer();
-        }
+        Request = new UnityWebRequest(url, method.ToString());
+        Request.downloadHandler = new DownloadHandlerBuffer();
     }
 
     public void AddHeader(string key, string value) {

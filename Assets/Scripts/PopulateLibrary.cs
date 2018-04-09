@@ -20,6 +20,7 @@ namespace Assets.Scripts
         void Start()
         {
             blobList = new List<Blob>();
+            _populated = false;
         }
 
         // Update is called once per frame
@@ -35,13 +36,14 @@ namespace Assets.Scripts
         {
             blobList = new List<Blob>(blobs);
             _loaded = true;
-            blobList.ForEach(GetBlobInfo);
+            _populated = false;
+            //blobList.ForEach(GetBlobInfo);
         }
 
         private void GetBlobInfo(Blob obj)
         {
-            Debug.Log("Blob name: " + obj.Name);
-            Debug.Log("Blob Properties: " + obj.Properties.BlobType);
+            //Debug.Log("Blob name: " + obj.Name);
+            //Debug.Log("Blob Properties: " + obj.Properties.BlobType);
         }
 
         private void PopulateGrid()
@@ -49,7 +51,7 @@ namespace Assets.Scripts
             blobList.ForEach(MakePrefab);
             _populated = true;
         }
-
+        
         private void MakePrefab(Blob obj)
         {
             Button newObject;

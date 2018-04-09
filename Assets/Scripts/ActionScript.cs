@@ -2,6 +2,8 @@ using UnityEngine;
 using HoloToolkit.Unity;
 using UnityEngine.SceneManagement;
 using System;
+using System.IO;
+using System.Threading.Tasks;
 
 namespace Assets.Scripts
 {
@@ -22,37 +24,46 @@ namespace Assets.Scripts
         {
             if (_resetSpatialUnderstanding)
             {
-                SpatialUnderstandingState.Instance.HideText = true;
-                if ((SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
-                   !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
-                {
-                    Debug.Log("Resetting Mesh");
-                    DebugDialog.Instance.PrimaryText = "Resetting Mesh...";
-                    SpatialUnderstanding.Instance.RequestFinishScan();
-                }
-                if
-                    (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.ReadyToScan ||
-                        SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done
-                    )
-                {
-                    ViewManager.Instance.HideMesh();
-                    DebugDialog.Instance.PrimaryText = "Reset Complete";
-                    Debug.Log("Reset Complete");
-                    _resetSpatialUnderstanding = false;
-                    Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
-                }
+                ResetScanner();
             }
             if (_startScan)
             {
-                SpatialUnderstandingState.Instance.HideText = false;
+                StartScanner();
+            }
+        }
 
-                if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done ||
-                     SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.None
-                    )
-                {
-                    SpatialUnderstanding.Instance.RequestBeginScanning();
-                    _startScan = false;
-                }
+        private void StartScanner()
+        {
+            SpatialUnderstandingState.Instance.HideText = false;
+            if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done ||
+                 SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.None
+                )
+            {
+                SpatialUnderstanding.Instance.RequestBeginScanning();
+                _startScan = false;
+            }
+            Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+        }
+
+        private void ResetScanner()
+        {
+            SpatialUnderstandingState.Instance.HideText = true;
+            if ((SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
+               !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
+            {
+                Debug.Log("Resetting Mesh");
+                DebugDialog.Instance.PrimaryText = "Resetting Mesh...";
+                SpatialUnderstanding.Instance.RequestFinishScan();
+            }
+            if
+                (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.ReadyToScan ||
+                    SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done
+                )
+            {
+                ViewManager.Instance.HideMesh();
+                DebugDialog.Instance.PrimaryText = "Reset Complete";
+                Debug.Log("Reset Complete");
+                _resetSpatialUnderstanding = false;
                 Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
             }
         }
@@ -73,6 +84,7 @@ namespace Assets.Scripts
         public void TappedLibrary()
         {
             ViewManager.Instance.InitializeLibrary();
+            //CosmoScript.Instance.QueryMeshCollection();
             StorageService.Instance.GetBlobList();
             if (SpatialUnderstanding.IsInitialized && SpatialUnderstanding.Instance.ScanState != SpatialUnderstanding.ScanStates.None)
             {
@@ -80,17 +92,29 @@ namespace Assets.Scripts
             }
         }
 
-        public void TappedSave()
+        public async void TappedSave()
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
+                // Save the file temporarily
                 DebugDialog.Instance.PrimaryText = "Saving Mesh...";
-                RoomSaver.Instance.fileName = "mesh_save_test" + DateTime.Now.ToString("yyyy_MM_dd_HH:mm:ss");
-                Debug.Log("Saving to file" + RoomSaver.Instance.fileName);
+                string rowkey = DateTime.Now.ToString("yyyyMMdd");
+                string fn = "mesh_" + rowkey + "T" +DateTime.Now.ToString("HHmm");
+                RoomSaver.Instance.fileName = fn;
                 RoomSaver.Instance.anchorStoreName = "mesh_test_anchor";
-                localPath = RoomSaver.Instance.SaveRoom();
+                string localpath = await RoomSaver.Instance.SaveRoomAsync();
                 Debug.Log("File Name: " + localPath);
-                StorageService.Instance.PutObjectBlob(localPath);
+                Debug.Log("MeshInfo " + fn);
+                // Prepare file for push to Azure Storage
+                MeshInfo tempInfo = new MeshInfo(rowkey)
+                {
+                    playspaceStats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats(),
+                    localpath = localpath,
+                    filename = fn+".obj" //Not working Path.GetFileName(localPath)
+                };
+                Debug.Log(tempInfo.filename);
+                Debug.Log("Wall Area " + SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats().WallSurfaceArea);
+                StorageService.Instance.PutObjectBlob(tempInfo);
             }
         }
 
@@ -124,6 +148,7 @@ namespace Assets.Scripts
 
         public void TappedRefresh()
         {
+            // CosmoScript.Instance.QueryMeshCollection();
             StorageService.Instance.GetBlobList();
         }
 

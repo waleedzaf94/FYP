@@ -143,7 +143,7 @@ Transform:
   m_GameObject: {fileID: 23259879}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 437944827}
   m_Father: {fileID: 1907416128}
@@ -2179,6 +2179,7 @@ GameObject:
   - component: {fileID: 376902727}
   - component: {fileID: 376902728}
   - component: {fileID: 376902725}
+  - component: {fileID: 376902726}
   m_Layer: 0
   m_Name: Hologram
   m_TagString: Untagged
@@ -2198,6 +2199,26 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4, y: 1.5, z: 4}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &376902726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 376902724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37870ab7a81bfb74b9fa277cf45b06d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SetStabilizationPlane: 1
+  UseUnscaledTime: 1
+  LerpStabilizationPlanePowerCloser: 4
+  LerpStabilizationPlanePowerFarther: 7
+  targetOverride: {fileID: 0}
+  trackVelocity: 0
+  UseGazeManager: 1
+  DefaultPlaneDistance: 1
+  DrawGizmos: 0
 --- !u!4 &376902727
 Transform:
   m_ObjectHideFlags: 0
@@ -2254,7 +2275,7 @@ Transform:
   m_GameObject: {fileID: 388767796}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 101936521}
   m_Father: {fileID: 423554303}
@@ -2738,7 +2759,7 @@ Transform:
   m_GameObject: {fileID: 425374446}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: -0.4, z: 1.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.6, y: 0.6, z: 0.6}
   m_Children:
   - {fileID: 932146020}
   m_Father: {fileID: 117735484}
@@ -2807,7 +2828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 3
+  TagalongDistance: 2
   EnforceDistance: 1
   PositionUpdateSpeed: 9
   SmoothMotion: 1
@@ -2818,9 +2839,9 @@ MonoBehaviour:
   TargetVerticalOverlap: 1
   HorizontalRayCount: 3
   VerticalRayCount: 3
-  MinimumTagalongDistance: 3
+  MinimumTagalongDistance: 2
   MaintainFixedSize: 1
-  DepthUpdateSpeed: 3
+  DepthUpdateSpeed: 2
   DebugDrawLines: 0
   DebugPointLight: {fileID: 0}
 --- !u!114 &437944829
@@ -5135,7 +5156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 3
+  TagalongDistance: 2
   EnforceDistance: 1
   PositionUpdateSpeed: 9
   SmoothMotion: 1
@@ -5146,9 +5167,9 @@ MonoBehaviour:
   TargetVerticalOverlap: 1
   HorizontalRayCount: 3
   VerticalRayCount: 3
-  MinimumTagalongDistance: 3
+  MinimumTagalongDistance: 2
   MaintainFixedSize: 1
-  DepthUpdateSpeed: 3
+  DepthUpdateSpeed: 2
   DebugDrawLines: 0
   DebugPointLight: {fileID: 0}
 --- !u!114 &945902365
@@ -8910,7 +8931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 3
+  TagalongDistance: 2
   EnforceDistance: 1
   PositionUpdateSpeed: 9
   SmoothMotion: 1
@@ -8921,9 +8942,9 @@ MonoBehaviour:
   TargetVerticalOverlap: 1
   HorizontalRayCount: 3
   VerticalRayCount: 3
-  MinimumTagalongDistance: 3
+  MinimumTagalongDistance: 2
   MaintainFixedSize: 1
-  DepthUpdateSpeed: 3
+  DepthUpdateSpeed: 2
   DebugDrawLines: 0
   DebugPointLight: {fileID: 0}
 --- !u!114 &1800379298

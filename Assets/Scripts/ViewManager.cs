@@ -31,9 +31,7 @@ namespace Assets.Scripts
         private void Start()
         {
             _timeToHideMesh = true;
-            LibraryView.SetActive(true);
-            VisualizationView.SetActive(false);
-            RecordingView.SetActive(false);
+            InitializeLibrary();
         }
 
         private void Update()
