@@ -66,6 +66,7 @@ namespace Assets.Scripts
                 _resetSpatialUnderstanding = false;
                 Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
             }
+            SpatialUnderstandingState.Instance.MeshSaving = false;
         }
 
         public void TappedStartScan()
@@ -73,6 +74,7 @@ namespace Assets.Scripts
             _startScan = true;
             ViewManager.Instance.ShowMesh();
             Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+            SpatialUnderstandingState.Instance.MeshSaving = false;
         }
 
         public void TappedReset()
@@ -96,25 +98,28 @@ namespace Assets.Scripts
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
+                SpatialUnderstandingState.Instance.MeshSaving = true;
                 // Save the file temporarily
                 DebugDialog.Instance.PrimaryText = "Saving Mesh...";
                 string rowkey = DateTime.Now.ToString("yyyyMMdd");
                 string fn = "mesh_" + rowkey + "T" +DateTime.Now.ToString("HHmm");
                 RoomSaver.Instance.fileName = fn;
                 RoomSaver.Instance.anchorStoreName = "mesh_test_anchor";
-                string localpath = await RoomSaver.Instance.SaveRoomAsync();
+                string metadata = RoomSaver.Instance.GetStatsAsString();
+                string localpath = await RoomSaver.Instance.SaveRoomAsync(metadata);
                 Debug.Log("File Name: " + localPath);
                 Debug.Log("MeshInfo " + fn);
                 // Prepare file for push to Azure Storage
                 MeshInfo tempInfo = new MeshInfo(rowkey)
                 {
                     playspaceStats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats(),
+                    metadata = metadata,
                     localpath = localpath,
                     filename = fn+".obj" //Not working Path.GetFileName(localPath)
                 };
                 Debug.Log(tempInfo.filename);
-                Debug.Log("Wall Area " + SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats().WallSurfaceArea);
-                StorageService.Instance.PutObjectBlob(tempInfo);
+                //Debug.Log("Wall Area " + SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats().WallSurfaceArea);
+                StorageService.Instance.PutObjectToBlob(tempInfo);
             }
         }
 
@@ -123,7 +128,10 @@ namespace Assets.Scripts
             if ((SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning) &&
                 !SpatialUnderstanding.Instance.ScanStatsReportStillWorking)
             {
-                SpatialUnderstanding.Instance.RequestFinishScan();
+                if (SpatialUnderstandingState.Instance.DoesScanMeetMinBarForCompletion)
+                {
+                    SpatialUnderstanding.Instance.RequestFinishScan();
+                }
             }
         }
 
@@ -157,19 +165,16 @@ namespace Assets.Scripts
             ViewManager.Instance.InitializeLibrary();
         }
 
-        public void TappedMeshInfo()
-        {
-
-        }
+        public void TappedMeshInfo() => ModelViewer.Instance.meshInfoText.gameObject.SetActive(true);
 
         public void TappedRotateX()
         {
-            MeshRenderScript.Instance.ToggleRotate("x");
+            ModelViewer.Instance.ToggleRotate("x");
         }
 
         public void TappedRotateY()
         {
-            MeshRenderScript.Instance.ToggleRotate("y");
+            ModelViewer.Instance.ToggleRotate("y");
         }
 
     }

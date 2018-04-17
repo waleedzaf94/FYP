@@ -48,7 +48,7 @@ namespace HoloToolkit.Unity.SpatialMapping
         /// <param name="meshes">The collection of Mesh objects to save.</param>
         /// <returns>Fully qualified name of the saved mesh file.</returns>
         /// <remarks>Determines the save path to use and automatically applies the file extension.</remarks>
-        public static async Task<string> SaveAsObjAsync(string fileName, IEnumerable<Mesh> meshes)
+        public static async Task<string> SaveAsObjAsync(string fileName, IEnumerable<Mesh> meshes, string metadata = "")
         {
             if (string.IsNullOrEmpty(fileName))
             {
@@ -67,7 +67,7 @@ namespace HoloToolkit.Unity.SpatialMapping
             faceCount = 0;
             using (StreamWriter outputFile = new StreamWriter(OpenFileForWrite(folderName, fileName + fileExtension)))
             {
-
+                await outputFile.WriteAsync(metadata);
                 int o = 0;
                 foreach (Mesh theMesh in meshes)
                 {
@@ -82,19 +82,6 @@ namespace HoloToolkit.Unity.SpatialMapping
 
             return fullpath;
         }
-
-        public static string SaveStringAsSubMesh(string submeshInfo, string fileName)
-        {
-            string folderName = MeshFolderName;
-            using (StreamWriter outputFile = new StreamWriter(OpenFileForWrite(folderName, fileName + fileExtension)))
-            {
-                Debug.Log("Saving File..." + fileName);
-                outputFile.WriteLine(submeshInfo);
-                //outputFile.WriteLine(tempInfo);
-            }
-            return Path.Combine(folderName, fileName + fileExtension);
-        }
-
 
         public static async Task<string> SaveStringAsTemporaryMeshAsync(string meshInfo)
         {
