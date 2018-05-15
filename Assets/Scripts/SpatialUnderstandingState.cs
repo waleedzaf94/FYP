@@ -7,9 +7,10 @@ using HoloToolkit.Unity.SpatialMapping;
 public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, IInputClickHandler, ISourceStateHandler
 {
     public float MinAreaForStats = 5.0f;
-    public float MinAreaForComplete = 50.0f;
-    public float MinHorizAreaForComplete = 10.0f;
-    public float MinWallAreaForComplete = 35.0f;
+    public float MinAreaForComplete = 24.0f;
+    public float MinHorizAreaForComplete = 4.0f;
+    public float MinWallAreaForComplete = 20.0f;
+    public float MinCellQuality = 0.5f;
 
     private uint trackedHandsCount = 0;
 
@@ -20,20 +21,6 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
     public bool HideText = false;
 
     private bool ready = false;
-
-    private string _spaceQueryDescription;
-
-    public string SpaceQueryDescription
-    {
-        get
-        {
-            return _spaceQueryDescription;
-        }
-        set
-        {
-            _spaceQueryDescription = value;
-        }
-    }
 
     public bool DoesScanMeetMinBarForCompletion
     {
@@ -53,11 +40,17 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                 return false;
             }
             SpatialUnderstandingDll.Imports.PlayspaceStats stats = SpatialUnderstanding.Instance.UnderstandingDLL.GetStaticPlayspaceStats();
-
+            float cellQuality = 0f;
+            if (stats.CellCount_IsSeenQualtiy_Seen > 0)
+                cellQuality = stats.CellCount_IsSeenQualtiy_Good / stats.CellCount_IsSeenQualtiy_Seen;
+            
             // Check our preset requirements
-            if ((stats.TotalSurfaceArea > MinAreaForComplete) ||
-                (stats.HorizSurfaceArea > MinHorizAreaForComplete) ||
-                (stats.WallSurfaceArea > MinWallAreaForComplete))
+            if ((stats.TotalSurfaceArea > MinAreaForComplete) && (cellQuality > MinCellQuality))
+                //||
+                //(
+                //    (stats.HorizSurfaceArea > MinHorizAreaForComplete) &&
+                //    (stats.WallSurfaceArea > MinWallAreaForComplete))
+                //)
             {
                 return true;
             }
@@ -71,12 +64,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         {
             if (HideText)
                 return string.Empty;
-
-            // Display the space and object query results (has priority)
-            if (!string.IsNullOrEmpty(SpaceQueryDescription))
-            {
-                return SpaceQueryDescription;
-            }
+            
             // Scan state
             if (SpatialUnderstanding.Instance.AllowSpatialUnderstanding)
             {
@@ -94,7 +82,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                         // The stats tell us if we could potentially finish
                         if (DoesScanMeetMinBarForCompletion)
                         {
-                            return "When ready, air tap to finalize your scan";
+                            return "Tap to finalize";
                         }
                         return "Walk around and scan your room";
                     case SpatialUnderstanding.ScanStates.Finishing:
@@ -116,20 +104,10 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
             ready = DoesScanMeetMinBarForCompletion;
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Scanning)
             {
-                if (trackedHandsCount > 0)
-                {
-                    return ready ? Color.green : Color.red;
-                }
-                return ready ? Color.yellow : Color.white;
+                return ready ? Color.green : Color.red;
             }
-
-            // If we're looking at the menu, fade it out
-            float alpha = 1.0f;
-
             // Special case processing & 
-            return (!string.IsNullOrEmpty(SpaceQueryDescription)) ?
-                (PrimaryText.Contains("processing") ? new Color(1.0f, 0.0f, 0.0f, 1.0f) : new Color(1.0f, 0.7f, 0.1f, alpha)) :
-                new Color(1.0f, 1.0f, 1.0f, alpha);
+            return PrimaryText.Contains("Finalizing") ? Color.yellow : Color.white;
         }
     }
 
@@ -160,9 +138,7 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
                 if (stats.TotalSurfaceArea > MinAreaForStats)
                 {
                     SpatialMappingManager.Instance.DrawVisualMeshes = false;
-                    string subDisplayText = string.Format("totalArea={0:0.0}, horiz={1:0.0}, wall={2:0.0}", stats.TotalSurfaceArea, stats.HorizSurfaceArea, stats.WallSurfaceArea);
-                    subDisplayText += string.Format("\nnumFloorCells={0}, numCeilingCells={1}, numPlatformCells={2}", stats.NumFloor, stats.NumCeiling, stats.NumPlatform);
-                    subDisplayText += string.Format("\npaintMode={0}, seenCells={1}, notSeen={2}", stats.CellCount_IsPaintMode, stats.CellCount_IsSeenQualtiy_Seen + stats.CellCount_IsSeenQualtiy_Good, stats.CellCount_IsSeenQualtiy_None);
+                    string subDisplayText = string.Format("Total Area = {0:0.00}, Floor Area={1:0.00}, Wall Area={2:0.00}", stats.TotalSurfaceArea, stats.HorizSurfaceArea, stats.WallSurfaceArea);
                     return subDisplayText;
                 }
                 return "";
@@ -171,6 +147,8 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         }
     }
 
+    public bool MeshSaving { get; internal set; } = false;
+
     private void Update_DebugDisplay()
     {
         // Basic checks
@@ -178,9 +156,13 @@ public class SpatialUnderstandingState : Singleton<SpatialUnderstandingState>, I
         {
             return;
         }
-        DebugDisplay.text = PrimaryText;
-        DebugDisplay.color = PrimaryColor;
-        DebugSubDisplay.text = DetailsText;
+        if (!MeshSaving)
+        {
+            DebugDisplay.text = PrimaryText;
+            DebugDisplay.color = PrimaryColor;
+            DebugSubDisplay.text = DetailsText;
+
+        }
     }
 
     private void Start()

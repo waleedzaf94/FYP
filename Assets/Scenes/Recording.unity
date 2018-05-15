@@ -128,7 +128,7 @@ GameObject:
   m_Component:
   - component: {fileID: 23259880}
   - component: {fileID: 23259881}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RecordingButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,7 +147,7 @@ Transform:
   m_Children:
   - {fileID: 437944827}
   m_Father: {fileID: 1907416128}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &23259881
 MonoBehaviour:
@@ -172,7 +172,7 @@ GameObject:
   - component: {fileID: 40481132}
   - component: {fileID: 40481134}
   - component: {fileID: 40481133}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,81 +239,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 40481131}
   m_Mesh: {fileID: 4300006, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
---- !u!1 &78776737
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1866324525377850, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 78776738}
-  - component: {fileID: 78776740}
-  - component: {fileID: 78776739}
-  m_Layer: 5
-  m_Name: UIButtonSquareIcon
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &78776738
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4568705896652598, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78776737}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.0048, z: -0.0075}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1887393542}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &78776739
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 23946649509343250, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78776737}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &78776740
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 33326533277699574, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 78776737}
-  m_Mesh: {fileID: 4300010, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
 --- !u!1 &92362478
 GameObject:
   m_ObjectHideFlags: 0
@@ -343,6 +268,7 @@ Transform:
   - {fileID: 1984419680}
   - {fileID: 408968346}
   - {fileID: 618478581}
+  - {fileID: 405836687}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -353,12 +279,11 @@ Transform:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945902363}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 330748679}
-  - {fileID: 1679079339}
   - {fileID: 1420372719}
   - {fileID: 243894832}
   m_Father: {fileID: 388767797}
@@ -375,7 +300,7 @@ GameObject:
   - component: {fileID: 114562013}
   - component: {fileID: 114562015}
   - component: {fileID: 114562014}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -450,7 +375,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 117735484}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Library
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -483,7 +408,7 @@ GameObject:
   - component: {fileID: 134423206}
   - component: {fileID: 134423208}
   - component: {fileID: 134423207}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -556,7 +481,7 @@ GameObject:
   m_Component:
   - component: {fileID: 163573772}
   - component: {fileID: 163573773}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Spatial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -576,7 +501,7 @@ Transform:
   - {fileID: 296620488}
   - {fileID: 1473709715}
   m_Father: {fileID: 1907416128}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &163573773
 MonoBehaviour:
@@ -589,7 +514,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f122ca4ae6b527e4798205becf9a0550, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AnchorDebugText: {fileID: 0}
+  AnchorDebugText: {fileID: 1569750420}
   ShowDetailedLogs: 0
   PersistentAnchors: 0
 --- !u!1 &170671737
@@ -603,7 +528,7 @@ GameObject:
   - component: {fileID: 170671738}
   - component: {fileID: 170671740}
   - component: {fileID: 170671739}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -681,7 +606,7 @@ GameObject:
   - component: {fileID: 185267435}
   - component: {fileID: 185267437}
   - component: {fileID: 185267436}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -759,6 +684,12 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!114 &210887541 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114000012563305450, guid: 86195468488ce7941a7abcbfaffe9455,
+    type: 2}
+  m_PrefabInternal: {fileID: 2030129633}
+  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
 --- !u!1 &238371540
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,7 +701,7 @@ GameObject:
   - component: {fileID: 238371544}
   - component: {fileID: 238371543}
   - component: {fileID: 238371542}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Viewport
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -859,7 +790,7 @@ GameObject:
   - component: {fileID: 242591202}
   - component: {fileID: 242591201}
   - component: {fileID: 242591200}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: FinalizeButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1138,7 +1069,7 @@ GameObject:
   - component: {fileID: 243894835}
   - component: {fileID: 243894834}
   - component: {fileID: 243894833}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RotateYButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1153,12 +1084,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 243894831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.12, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 170671738}
   m_Father: {fileID: 101936521}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &243894833
 MonoBehaviour:
@@ -1410,7 +1341,7 @@ GameObject:
   - component: {fileID: 265025386}
   - component: {fileID: 265025388}
   - component: {fileID: 265025387}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1485,7 +1416,7 @@ GameObject:
   - component: {fileID: 266481117}
   - component: {fileID: 266481116}
   - component: {fileID: 266481115}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scroll View
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1588,7 +1519,7 @@ GameObject:
   - component: {fileID: 269279359}
   - component: {fileID: 269279361}
   - component: {fileID: 269279360}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1726,6 +1657,10 @@ Prefab:
       propertyPath: SimulatedUpdatePeriodInSeconds
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1000010302963436, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 2ed75ffdf9031c94e8bce4b3d17b9928, type: 2}
   m_IsPrefabParent: 0
@@ -1752,7 +1687,7 @@ GameObject:
   - component: {fileID: 330748681}
   - component: {fileID: 330748680}
   - component: {fileID: 330748688}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: BackButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1767,7 +1702,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330748678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.12, y: 0, z: 0}
+  m_LocalPosition: {x: -0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 40481132}
@@ -2024,7 +1959,7 @@ GameObject:
   - component: {fileID: 331367816}
   - component: {fileID: 331367818}
   - component: {fileID: 331367817}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2104,7 +2039,7 @@ GameObject:
   - component: {fileID: 352484861}
   - component: {fileID: 352484863}
   - component: {fileID: 352484862}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2180,7 +2115,7 @@ GameObject:
   - component: {fileID: 376902728}
   - component: {fileID: 376902725}
   - component: {fileID: 376902726}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Hologram
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2197,7 +2132,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4, y: 1.5, z: 4}
+  m_Size: {x: 3, y: 1.5, z: 3}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &376902726
 MonoBehaviour:
@@ -2227,10 +2162,11 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 376902724}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 1.5}
+  m_LocalPosition: {x: 0, y: -0.2, z: 2}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 2105211452}
+  - {fileID: 2030129634}
   m_Father: {fileID: 423554303}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2260,7 +2196,7 @@ GameObject:
   m_Component:
   - component: {fileID: 388767797}
   - component: {fileID: 388767799}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeshButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2304,7 +2240,7 @@ GameObject:
   - component: {fileID: 394256409}
   - component: {fileID: 394256411}
   - component: {fileID: 394256410}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2382,7 +2318,7 @@ GameObject:
   - component: {fileID: 402727456}
   - component: {fileID: 402727458}
   - component: {fileID: 402727457}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2469,12 +2405,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405836686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 92362479}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &405836688
 MonoBehaviour:
@@ -2562,7 +2498,7 @@ MonoBehaviour:
           m_CallState: 2
       m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
         Culture=neutral, PublicKeyToken=null
-  - Keyword: Record
+  - Keyword: Record Now
     Response:
       m_PersistentCalls:
         m_Calls:
@@ -2597,7 +2533,7 @@ MonoBehaviour:
   Keywords:
   - Keyword: My Library
     KeyCode: 0
-  - Keyword: Record
+  - Keyword: Record Now
     KeyCode: 0
   recognitionConfidenceLevel: 1
 --- !u!1 &419699553
@@ -2611,7 +2547,7 @@ GameObject:
   - component: {fileID: 419699554}
   - component: {fileID: 419699556}
   - component: {fileID: 419699555}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2699,7 +2635,7 @@ GameObject:
   m_Component:
   - component: {fileID: 423554303}
   - component: {fileID: 423554304}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: VisualizationView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2735,6 +2671,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   MeshHolder: {fileID: 376902724}
   MeshMaterial: {fileID: 2100000, guid: 46439ed2b3a117c4790396478c1e4212, type: 2}
+  meshInfoText: {fileID: 210887541}
 --- !u!1 &425374446
 GameObject:
   m_ObjectHideFlags: 0
@@ -2744,7 +2681,7 @@ GameObject:
   m_Component:
   - component: {fileID: 425374447}
   - component: {fileID: 425374449}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LibraryButtons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2790,7 +2727,7 @@ GameObject:
   - component: {fileID: 437944830}
   - component: {fileID: 437944829}
   - component: {fileID: 437944828}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RecordingToolBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2819,36 +2756,23 @@ Transform:
 --- !u!114 &437944828
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114825163517325130, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 437944826}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 2
+  TagalongDistance: 1.75
   EnforceDistance: 1
-  PositionUpdateSpeed: 9
+  PositionUpdateSpeed: 10
   SmoothMotion: 1
   SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.558
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.535
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 2
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 2
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
 --- !u!114 &437944829
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114039641173845148, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 437944826}
   m_Enabled: 0
@@ -2868,8 +2792,7 @@ MonoBehaviour:
 --- !u!65 &437944830
 BoxCollider:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65139531648426870, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 437944826}
   m_Material: {fileID: 0}
@@ -2946,7 +2869,7 @@ GameObject:
   - component: {fileID: 507651892}
   - component: {fileID: 507651891}
   - component: {fileID: 507651890}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: LibraryButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3218,7 +3141,7 @@ GameObject:
   - component: {fileID: 536178150}
   - component: {fileID: 536178152}
   - component: {fileID: 536178151}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3303,7 +3226,7 @@ GameObject:
   - component: {fileID: 550468184}
   - component: {fileID: 550468183}
   - component: {fileID: 550468182}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: StartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3575,7 +3498,7 @@ GameObject:
   - component: {fileID: 606223195}
   - component: {fileID: 606223197}
   - component: {fileID: 606223196}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3604,7 +3527,7 @@ TextMesh:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 606223194}
-  m_Text: Start
+  m_Text: Record
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -3680,7 +3603,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 982005592}
+  - {fileID: 872471795}
   m_Father: {fileID: 92362479}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3728,7 +3651,7 @@ GameObject:
   - component: {fileID: 626959033}
   - component: {fileID: 626959035}
   - component: {fileID: 626959034}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3757,7 +3680,7 @@ TextMesh:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 626959032}
-  m_Text: Horizontal Shift
+  m_Text: Rotate X
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -3814,7 +3737,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 685056116}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3851,7 +3774,7 @@ GameObject:
   - component: {fileID: 704902392}
   - component: {fileID: 704902394}
   - component: {fileID: 704902393}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3936,7 +3859,7 @@ GameObject:
   - component: {fileID: 735059798}
   - component: {fileID: 735059797}
   - component: {fileID: 735059796}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: ResetButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4208,7 +4131,7 @@ GameObject:
   - component: {fileID: 739631355}
   - component: {fileID: 739631357}
   - component: {fileID: 739631356}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4283,7 +4206,7 @@ GameObject:
   - component: {fileID: 767261317}
   - component: {fileID: 767261319}
   - component: {fileID: 767261318}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4361,7 +4284,7 @@ GameObject:
   - component: {fileID: 767900824}
   - component: {fileID: 767900826}
   - component: {fileID: 767900825}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4437,7 +4360,7 @@ GameObject:
   - component: {fileID: 781114594}
   - component: {fileID: 781114593}
   - component: {fileID: 781114596}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4551,7 +4474,7 @@ GameObject:
   - component: {fileID: 803025759}
   - component: {fileID: 803025758}
   - component: {fileID: 803025766}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: RecordingViewButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4823,7 +4746,7 @@ GameObject:
   - component: {fileID: 863304949}
   - component: {fileID: 863304951}
   - component: {fileID: 863304950}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4890,6 +4813,100 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 863304948}
   m_Mesh: {fileID: 4300006, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
+--- !u!1 &872471794
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 872471795}
+  - component: {fileID: 872471798}
+  - component: {fileID: 872471797}
+  - component: {fileID: 872471796}
+  - component: {fileID: 872471799}
+  m_Layer: 0
+  m_Name: Text Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &872471795
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872471794}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 982005592}
+  - {fileID: 1569750419}
+  m_Father: {fileID: 618478581}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &872471796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872471794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagalongDistance: 1.75
+  EnforceDistance: 1
+  PositionUpdateSpeed: 10
+  SmoothMotion: 1
+  SmoothingFactor: 0.75
+--- !u!114 &872471797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872471794}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb69de839bd015f4099b5bd2c45e53e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnscaledTime: 1
+  PositionPerSecond: 30
+  RotationDegreesPerSecond: 720
+  RotationSpeedScaler: 0
+  ScalePerSecond: 5
+  SmoothLerpToTarget: 0
+  SmoothPositionLerpRatio: 0.5
+  SmoothRotationLerpRatio: 0.5
+  SmoothScaleLerpRatio: 0.5
+--- !u!65 &872471798
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872471794}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.001, y: 0.001, z: 0.001}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &872471799
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 872471794}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b6368f69014741489222a33afcf90b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  DebugDisplay: {fileID: 982005590}
 --- !u!1001 &926285126
 Prefab:
   m_ObjectHideFlags: 0
@@ -4903,7 +4920,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.035
+      value: -0.03500001
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4927,19 +4944,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_Name
-      value: TextDebugDisplay
+      value: SpatialInfoDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.00075
+      value: 0.0035
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.00075
+      value: 0.0035
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.z
@@ -4948,7 +4965,7 @@ Prefab:
     - target: {fileID: 102000010767390410, guid: bfdc7f60d7205c84f82a4806a5352d60,
         type: 2}
       propertyPath: m_Text
-      value: Hello World
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 102000010767390410, guid: bfdc7f60d7205c84f82a4806a5352d60,
         type: 2}
@@ -4958,7 +4975,11 @@ Prefab:
     - target: {fileID: 102000010767390410, guid: bfdc7f60d7205c84f82a4806a5352d60,
         type: 2}
       propertyPath: m_FontSize
-      value: 48
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
@@ -4986,39 +5007,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 926285129}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PivotAxis: 0
-  TargetTransform: {fileID: 0}
---- !u!114 &926285131
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 926285129}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TagalongDistance: 4
+  TagalongDistance: 1.75
   EnforceDistance: 1
-  PositionUpdateSpeed: 9.8
+  PositionUpdateSpeed: 10
   SmoothMotion: 1
   SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.1
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.1
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 4
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 4
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
---- !u!114 &926285132
+--- !u!114 &926285131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5038,7 +5035,7 @@ MonoBehaviour:
   SmoothPositionLerpRatio: 0.5
   SmoothRotationLerpRatio: 0.5
   SmoothScaleLerpRatio: 0.5
---- !u!65 &926285133
+--- !u!65 &926285132
 BoxCollider:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -5048,8 +5045,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2000005, y: 0.7201173, z: 0}
-  m_Center: {x: 0, y: -0.36005864, z: 0}
+  m_Size: {x: 25.4, y: 5.7609377, z: 0}
+  m_Center: {x: 0, y: -2.8803468, z: 0}
+--- !u!114 &926285133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926285129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PivotAxis: 0
+  TargetTransform: {fileID: 0}
 --- !u!1001 &927494566
 Prefab:
   m_ObjectHideFlags: 0
@@ -5137,7 +5147,7 @@ GameObject:
   - component: {fileID: 945902366}
   - component: {fileID: 945902365}
   - component: {fileID: 945902364}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: MeshToolbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5147,31 +5157,19 @@ GameObject:
 --- !u!114 &945902364
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114825163517325130, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 945902363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 2
+  TagalongDistance: 1.75
   EnforceDistance: 1
-  PositionUpdateSpeed: 9
+  PositionUpdateSpeed: 10
   SmoothMotion: 1
   SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.558
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.535
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 2
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 2
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
 --- !u!114 &945902365
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5204,7 +5202,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.08027828, z: 0.012825012}
+  m_Size: {x: 0.24, y: 0.08027828, z: 0.012825012}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &945902367
 MonoBehaviour:
@@ -5238,7 +5236,7 @@ GameObject:
   - component: {fileID: 952259900}
   - component: {fileID: 952259899}
   - component: {fileID: 952259907}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: RefreshButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5541,7 +5539,7 @@ GameObject:
   - component: {fileID: 971179467}
   - component: {fileID: 971179466}
   - component: {fileID: 971179465}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scrollbar Horizontal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5657,7 +5655,7 @@ GameObject:
   - component: {fileID: 981750045}
   - component: {fileID: 981750047}
   - component: {fileID: 981750046}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5729,7 +5727,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 618478581}
+    m_TransformParent: {fileID: 872471795}
     m_Modifications:
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.x
@@ -5737,7 +5735,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.035
+      value: 0.1
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.z
@@ -5778,16 +5776,21 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.00075
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.00075
+      value: 0.005
       objectReference: {fileID: 0}
     - target: {fileID: 102000010767390410, guid: bfdc7f60d7205c84f82a4806a5352d60,
         type: 2}
       propertyPath: m_FontSize
-      value: 48
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 23000013318538408, guid: bfdc7f60d7205c84f82a4806a5352d60,
+        type: 2}
+      propertyPath: m_DynamicOccludee
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
@@ -5820,53 +5823,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 0
   TargetTransform: {fileID: 0}
---- !u!114 &982005594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 982005591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TagalongDistance: 2
-  EnforceDistance: 1
-  PositionUpdateSpeed: 9.8
-  SmoothMotion: 1
-  SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.1
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.1
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 1
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 4
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
---- !u!114 &982005595
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 982005591}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb69de839bd015f4099b5bd2c45e53e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnscaledTime: 1
-  PositionPerSecond: 30
-  RotationDegreesPerSecond: 720
-  RotationSpeedScaler: 0
-  ScalePerSecond: 5
-  SmoothLerpToTarget: 0
-  SmoothPositionLerpRatio: 0.5
-  SmoothRotationLerpRatio: 0.5
-  SmoothScaleLerpRatio: 0.5
 --- !u!65 &982005596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5877,20 +5833,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0, y: 5.7609377, z: 0}
+  m_Size: {x: 25.4, y: 5.7609377, z: 0}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &982005597
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 982005591}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b6368f69014741489222a33afcf90b1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DebugDisplay: {fileID: 982005590}
 --- !u!1 &1046035265
 GameObject:
   m_ObjectHideFlags: 0
@@ -5901,7 +5845,7 @@ GameObject:
   - component: {fileID: 1046035266}
   - component: {fileID: 1046035268}
   - component: {fileID: 1046035267}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5970,7 +5914,7 @@ GameObject:
   - component: {fileID: 1124202311}
   - component: {fileID: 1124202313}
   - component: {fileID: 1124202312}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6052,7 +5996,7 @@ GameObject:
   - component: {fileID: 1125603314}
   - component: {fileID: 1125603313}
   - component: {fileID: 1125603312}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: SaveButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6158,42 +6102,42 @@ MonoBehaviour:
     BoolValue: 0
     IntValue: 0
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 1
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 1
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 2
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 2
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 3
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 3
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 4
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 4
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 5
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 5
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
 --- !u!95 &1125603314
 Animator:
   serializedVersion: 3
@@ -6324,7 +6268,7 @@ GameObject:
   - component: {fileID: 1126849693}
   - component: {fileID: 1126849695}
   - component: {fileID: 1126849694}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6509,6 +6453,14 @@ Prefab:
       propertyPath: m_FontData.m_RichText
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 1529272863614100, guid: 89d08341a5d4d694788c271a84a64127, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1576825187195176, guid: 89d08341a5d4d694788c271a84a64127, type: 2}
+      propertyPath: m_Layer
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 89d08341a5d4d694788c271a84a64127, type: 2}
   m_IsPrefabParent: 0
@@ -6523,7 +6475,7 @@ GameObject:
   - component: {fileID: 1196027442}
   - component: {fileID: 1196027444}
   - component: {fileID: 1196027443}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6595,7 +6547,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 1205526458}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sliding Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6632,7 +6584,7 @@ GameObject:
   - component: {fileID: 1230557678}
   - component: {fileID: 1230557680}
   - component: {fileID: 1230557679}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6707,7 +6659,7 @@ GameObject:
   - component: {fileID: 1238124038}
   - component: {fileID: 1238124040}
   - component: {fileID: 1238124039}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6796,7 +6748,7 @@ GameObject:
   - component: {fileID: 1284837703}
   - component: {fileID: 1284837702}
   - component: {fileID: 1284837701}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Scrollbar Vertical
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6919,7 +6871,7 @@ GameObject:
   - component: {fileID: 1378442650}
   - component: {fileID: 1378442649}
   - component: {fileID: 1378442657}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: HelpButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7191,7 +7143,7 @@ GameObject:
   - component: {fileID: 1392922530}
   - component: {fileID: 1392922532}
   - component: {fileID: 1392922531}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7280,7 +7232,7 @@ GameObject:
   - component: {fileID: 1411883369}
   - component: {fileID: 1411883371}
   - component: {fileID: 1411883370}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7309,7 +7261,7 @@ TextMesh:
     type: 2}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1411883368}
-  m_Text: Vertical Shift
+  m_Text: Rotate Y
   m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
@@ -7376,7 +7328,7 @@ GameObject:
   - component: {fileID: 1420372721}
   - component: {fileID: 1420372720}
   - component: {fileID: 1420372728}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: RotateYButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7391,12 +7343,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420372718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.04, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1553563435}
   m_Father: {fileID: 101936521}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1420372720
 MonoBehaviour:
@@ -7737,6 +7689,10 @@ Prefab:
       propertyPath: m_Name
       value: SpatialUnderstandingObject
       objectReference: {fileID: 0}
+    - target: {fileID: 1355525263211484, guid: bc230faedf7065542afe62bf16fd4e37, type: 2}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bc230faedf7065542afe62bf16fd4e37, type: 2}
   m_IsPrefabParent: 0
@@ -7762,7 +7718,7 @@ GameObject:
   - component: {fileID: 1508173950}
   - component: {fileID: 1508173952}
   - component: {fileID: 1508173951}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7837,7 +7793,7 @@ GameObject:
   - component: {fileID: 1519374379}
   - component: {fileID: 1519374381}
   - component: {fileID: 1519374380}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -7926,7 +7882,7 @@ GameObject:
   - component: {fileID: 1553563435}
   - component: {fileID: 1553563437}
   - component: {fileID: 1553563436}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8009,7 +7965,7 @@ GameObject:
   - component: {fileID: 1561855155}
   - component: {fileID: 1561855156}
   - component: {fileID: 1561855157}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Content
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8088,7 +8044,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1907416128}
+    m_TransformParent: {fileID: 872471795}
     m_Modifications:
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.x
@@ -8096,7 +8052,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.19999999
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8120,7 +8076,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_Name
@@ -8134,7 +8090,7 @@ Prefab:
     - target: {fileID: 102000010767390410, guid: bfdc7f60d7205c84f82a4806a5352d60,
         type: 2}
       propertyPath: m_Text
-      value: HelloWorld
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.z
@@ -8142,11 +8098,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.001
+      value: 0.0002
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 0.0002
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
@@ -8166,7 +8126,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60,
     type: 2}
   m_PrefabInternal: {fileID: 1569750418}
---- !u!114 &1569750422
+--- !u!65 &1569750424
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569750421}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 32.2, y: 7.68125, z: 0}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1569750425
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -8179,65 +8151,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   PivotAxis: 0
   TargetTransform: {fileID: 0}
---- !u!114 &1569750423
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569750421}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TagalongDistance: 4
-  EnforceDistance: 1
-  PositionUpdateSpeed: 9.8
-  SmoothMotion: 1
-  SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.1
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.1
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 4
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 4
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
---- !u!114 &1569750424
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569750421}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb69de839bd015f4099b5bd2c45e53e5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  UseUnscaledTime: 1
-  PositionPerSecond: 30
-  RotationDegreesPerSecond: 720
-  RotationSpeedScaler: 0
-  ScalePerSecond: 5
-  SmoothLerpToTarget: 0
-  SmoothPositionLerpRatio: 0.5
-  SmoothRotationLerpRatio: 0.5
-  SmoothScaleLerpRatio: 0.5
---- !u!65 &1569750425
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1569750421}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 4.8, y: 1.2001953, z: 0}
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1604426741
 GameObject:
   m_ObjectHideFlags: 0
@@ -8248,7 +8161,7 @@ GameObject:
   - component: {fileID: 1604426742}
   - component: {fileID: 1604426744}
   - component: {fileID: 1604426743}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Handle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8317,7 +8230,7 @@ GameObject:
   - component: {fileID: 1610969194}
   - component: {fileID: 1610969196}
   - component: {fileID: 1610969195}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8392,7 +8305,7 @@ GameObject:
   - component: {fileID: 1660579891}
   - component: {fileID: 1660579893}
   - component: {fileID: 1660579892}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8470,285 +8383,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!1 &1679079338
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1055465189766046, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1679079339}
-  - component: {fileID: 1679079347}
-  - component: {fileID: 1679079346}
-  - component: {fileID: 1679079345}
-  - component: {fileID: 1679079344}
-  - component: {fileID: 1679079343}
-  - component: {fileID: 1679079342}
-  - component: {fileID: 1679079341}
-  - component: {fileID: 1679079340}
-  - component: {fileID: 1679079348}
-  m_Layer: 5
-  m_Name: MeshInfoButton
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1679079339
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4631890894416374, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.04, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1887393542}
-  m_Father: {fileID: 101936521}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1679079340
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114779616891749296, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 728fec8e9feecf64f933543126cbecae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TargetAnimator: {fileID: 1679079341}
-  AnimActions:
-  - ButtonState: 0
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 0
-    FloatValue: 0
-    InvalidParam: 1
-  - ButtonState: 1
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 1
-    FloatValue: 0
-    InvalidParam: 1
-  - ButtonState: 2
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 2
-    FloatValue: 0
-    InvalidParam: 1
-  - ButtonState: 3
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 3
-    FloatValue: 0
-    InvalidParam: 1
-  - ButtonState: 4
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 4
-    FloatValue: 0
-    InvalidParam: 1
-  - ButtonState: 5
-    ParamName: State
-    ParamType: 3
-    BoolValue: 0
-    IntValue: 5
-    FloatValue: 0
-    InvalidParam: 1
---- !u!95 &1679079341
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 95965712901657684, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dade752fc71c3d940ba5cc7eaf201f24, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!65 &1679079342
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 65254414020138326, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.079664916, y: 0.07962405, z: 0.007567048}
-  m_Center: {x: 0.00009402633, y: 0.00011447817, z: -0.00061780214}
---- !u!114 &1679079343
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114183410382506908, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ffc886b5774e0184990bff0ce51eaf92, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Profile: {fileID: 11400000, guid: 470603dbc72fbc14f8c1b69d314faf75, type: 2}
-  TextMesh: {fileID: 2053877324}
-  OverrideFontStyle: 0
-  Style: 0
-  OverrideAnchor: 0
-  Anchor: 4
-  OverrideSize: 0
-  Size: 72
-  OverrideOffset: 1
-  alpha: 1
-  disableText: 0
---- !u!114 &1679079344
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114859838433373446, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fff02dbb374b62340a93479237fb9319, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Profile: {fileID: 0}
-  targetIconRenderer: {fileID: 78776739}
-  DisableIcon: 0
-  OverrideIcon: 0
-  iconName: E711
-  iconOverride: {fileID: 0}
-  alpha: 1
---- !u!114 &1679079345
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114094333910938520, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7f67074a40850544a196681fad1325f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Profile: {fileID: 11400000, guid: f9af5d824507da24b8bbd97f4948aec7, type: 2}
-  audioSource: {fileID: 0}
---- !u!114 &1679079346
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114143354421079058, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86772d5ca853e924ba484bc960537c04, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Profile: {fileID: 11400000, guid: 041d19d84778e4544a8a7cf1c4783f9c, type: 2}
-  TargetTransform: {fileID: 1887393542}
-  Renderer: {fileID: 1839001092}
---- !u!114 &1679079347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114841843690958862, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e77a98cf320fe9340a55eecfe4567ca4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ButtonState: 4
-  ButtonPressFilter: 1
-  RequireGaze: 1
-  MainCollider: {fileID: 1679079342}
-  MainRenderer: {fileID: 1887393543}
---- !u!114 &1679079348
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1679079338}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c595192e7a719043a19ad66022e7496, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  ParentObject: {fileID: 0}
-  IsEnabled: 1
-  DetectHold: 0
-  HoldTime: 0.5
-  RollOffTime: 0.02
-  Keyword: 
-  KeywordRequiresGaze: 1
-  OnSelectEvents:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 618478583}
-        m_MethodName: TappedMeshInfo
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnDownEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnHoldEvent:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeEnterEvents:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnGazeLeaveEvents:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnDownEvents:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-  OnUpEvents:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
 --- !u!1 &1712736230
 GameObject:
   m_ObjectHideFlags: 0
@@ -8760,7 +8394,7 @@ GameObject:
   - component: {fileID: 1712736231}
   - component: {fileID: 1712736233}
   - component: {fileID: 1712736232}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8835,7 +8469,7 @@ GameObject:
   - component: {fileID: 1740493095}
   - component: {fileID: 1740493097}
   - component: {fileID: 1740493096}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8912,7 +8546,7 @@ GameObject:
   - component: {fileID: 1800379299}
   - component: {fileID: 1800379298}
   - component: {fileID: 1800379297}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: LibraryToolbar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -8922,31 +8556,19 @@ GameObject:
 --- !u!114 &1800379297
 MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 114825163517325130, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1800379296}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1c655338633f4544180b3d90a593ac17, type: 3}
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TagalongDistance: 2
+  TagalongDistance: 1.75
   EnforceDistance: 1
-  PositionUpdateSpeed: 9
+  PositionUpdateSpeed: 10
   SmoothMotion: 1
   SmoothingFactor: 0.75
-  MinimumHorizontalOverlap: 0.558
-  TargetHorizontalOverlap: 1
-  MinimumVerticalOverlap: 0.535
-  TargetVerticalOverlap: 1
-  HorizontalRayCount: 3
-  VerticalRayCount: 3
-  MinimumTagalongDistance: 2
-  MaintainFixedSize: 1
-  DepthUpdateSpeed: 2
-  DebugDrawLines: 0
-  DebugPointLight: {fileID: 0}
 --- !u!114 &1800379298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9006,7 +8628,7 @@ GameObject:
   - component: {fileID: 1812102649}
   - component: {fileID: 1812102651}
   - component: {fileID: 1812102650}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9070,81 +8692,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1812102648}
   m_Mesh: {fileID: 4300008, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
---- !u!1 &1839001090
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1215810033940600, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1839001091}
-  - component: {fileID: 1839001093}
-  - component: {fileID: 1839001092}
-  m_Layer: 5
-  m_Name: UIButtonSquareFace
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1839001091
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4466705863718876, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839001090}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1887393542}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1839001092
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 23425880811387228, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839001090}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 284aa3e66c225724caf8162435dd995a, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 1
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1839001093
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 33703438208499848, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1839001090}
-  m_Mesh: {fileID: 4300008, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
 --- !u!1 &1848533524
 GameObject:
   m_ObjectHideFlags: 0
@@ -9156,7 +8703,7 @@ GameObject:
   - component: {fileID: 1848533525}
   - component: {fileID: 1848533527}
   - component: {fileID: 1848533526}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9231,7 +8778,7 @@ GameObject:
   - component: {fileID: 1877969143}
   - component: {fileID: 1877969145}
   - component: {fileID: 1877969144}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9295,84 +8842,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1877969142}
   m_Mesh: {fileID: 4300010, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
---- !u!1 &1887393541
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1484378523047284, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 1887393542}
-  - component: {fileID: 1887393544}
-  - component: {fileID: 1887393543}
-  m_Layer: 5
-  m_Name: UIButtonSquare
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1887393542
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4280121682185764, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1887393541}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 0.5}
-  m_Children:
-  - {fileID: 1839001091}
-  - {fileID: 2053877323}
-  - {fileID: 78776738}
-  m_Father: {fileID: 1679079339}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!23 &1887393543
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 23311727516175714, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1887393541}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 21c60df565237784e9e5868efd2f1fbc, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
---- !u!33 &1887393544
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 33090067899806178, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1887393541}
-  m_Mesh: {fileID: 4300006, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
 --- !u!1 &1906346796
 GameObject:
   m_ObjectHideFlags: 0
@@ -9448,7 +8917,7 @@ GameObject:
   - component: {fileID: 1907416128}
   - component: {fileID: 1907416132}
   - component: {fileID: 1907416133}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: RecordingView
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9465,7 +8934,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1569750419}
   - {fileID: 926285127}
   - {fileID: 23259880}
   - {fileID: 163573772}
@@ -9487,7 +8955,8 @@ MonoBehaviour:
   MinAreaForComplete: 50
   MinHorizAreaForComplete: 10
   MinWallAreaForComplete: 35
-  DebugDisplay: {fileID: 1569750420}
+  MinCellQuality: 0.5
+  DebugDisplay: {fileID: 982005590}
   DebugSubDisplay: {fileID: 926285128}
   HideText: 0
 --- !u!114 &1907416133
@@ -9512,7 +8981,7 @@ GameObject:
   - component: {fileID: 1940664298}
   - component: {fileID: 1940664300}
   - component: {fileID: 1940664299}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9587,7 +9056,7 @@ GameObject:
   - component: {fileID: 1983566207}
   - component: {fileID: 1983566209}
   - component: {fileID: 1983566208}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9723,7 +9192,7 @@ GameObject:
   - component: {fileID: 1987949510}
   - component: {fileID: 1987949512}
   - component: {fileID: 1987949511}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareFace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9787,95 +9256,158 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1987949509}
   m_Mesh: {fileID: 4300008, guid: c68a88ae5c5b91f41b94c83aa4c4196e, type: 3}
---- !u!1 &2053877322
+--- !u!1001 &2030129633
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 376902727}
+    m_Modifications:
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0.08715578
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.9961947
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_SizeDelta.x
+      value: 800
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_SizeDelta.y
+      value: 300
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchorMin.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchorMin.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchorMax.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_AnchorMax.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_Pivot.x
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_Pivot.y
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 0.0050000004
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 0.005
+      objectReference: {fileID: 0}
+    - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000012563305450, guid: 86195468488ce7941a7abcbfaffe9455,
+        type: 2}
+      propertyPath: m_FontData.m_Alignment
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013091593620, guid: 86195468488ce7941a7abcbfaffe9455, type: 2}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 86195468488ce7941a7abcbfaffe9455, type: 2}
+  m_IsPrefabParent: 0
+--- !u!224 &2030129634 stripped
+RectTransform:
+  m_PrefabParentObject: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
+    type: 2}
+  m_PrefabInternal: {fileID: 2030129633}
+--- !u!1 &2030129635 stripped
 GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 1079950498351632, guid: 574cd1f7d793eed4ca9e45fe01173139,
+  m_PrefabParentObject: {fileID: 1000013091593620, guid: 86195468488ce7941a7abcbfaffe9455,
     type: 2}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 2053877323}
-  - component: {fileID: 2053877325}
-  - component: {fileID: 2053877324}
-  m_Layer: 5
-  m_Name: Text
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2053877323
-Transform:
+  m_PrefabInternal: {fileID: 2030129633}
+--- !u!114 &2030129636
+MonoBehaviour:
   m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 4266475933352344, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
+  m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2053877322}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0272, z: -0.012}
-  m_LocalScale: {x: 0.0021804431, y: 0.0021804424, z: 0.0021804424}
-  m_Children: []
-  m_Father: {fileID: 1887393542}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!102 &2053877324
-TextMesh:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 102328161489387186, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2053877322}
-  m_Text: More Info
-  m_OffsetZ: 0
-  m_CharacterSize: 1
-  m_LineSpacing: 1
-  m_Anchor: 7
-  m_Alignment: 1
-  m_TabSize: 4
-  m_FontSize: 48
-  m_FontStyle: 0
-  m_RichText: 1
-  m_Font: {fileID: 12800000, guid: 86574c70442309b45be5a1c37a37a40b, type: 3}
-  m_Color:
-    serializedVersion: 2
-    rgba: 4294967295
---- !u!23 &2053877325
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 23800407600268210, guid: 574cd1f7d793eed4ca9e45fe01173139,
-    type: 2}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2053877322}
+  m_GameObject: {fileID: 2030129635}
   m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_Materials:
-  - {fileID: 2100000, guid: 1017ef825d041c749bab30bf03aca0d3, type: 2}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
-  m_SelectedEditorRenderState: 3
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac8d5b128a1d8204fb76c86f47b75912, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PivotAxis: 0
+  TargetTransform: {fileID: 0}
 --- !u!1 &2087997384
 GameObject:
   m_ObjectHideFlags: 0
@@ -9887,7 +9419,7 @@ GameObject:
   - component: {fileID: 2087997385}
   - component: {fileID: 2087997387}
   - component: {fileID: 2087997386}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9976,7 +9508,7 @@ GameObject:
   - component: {fileID: 2096145226}
   - component: {fileID: 2096145228}
   - component: {fileID: 2096145227}
-  m_Layer: 5
+  m_Layer: 9
   m_Name: UIButtonSquareIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10050,7 +9582,7 @@ GameObject:
   - component: {fileID: 2105211452}
   - component: {fileID: 2105211449}
   - component: {fileID: 2105211450}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10152,7 +9684,7 @@ GameObject:
   - component: {fileID: 2138960742}
   - component: {fileID: 2138960744}
   - component: {fileID: 2138960743}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: UIButtonSquare
   m_TagString: Untagged
   m_Icon: {fileID: 0}

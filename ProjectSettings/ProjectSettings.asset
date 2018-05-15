@@ -12,7 +12,7 @@ PlayerSettings:
   useOnDemandResources: 0
   accelerometerFrequency: 60
   companyName: FYP17010
-  productName: HISS
+  productName: 'HISS: Holo Indoor Spatial Scanner'
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
   m_SplashScreenBackgroundColor: {r: 0.13725491, g: 0.12156863, b: 0.1254902, a: 1}
@@ -247,7 +247,14 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 0}
+      m_Width: 128
+      m_Height: 128
+      m_Kind: 0
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings:
@@ -559,7 +566,20 @@ PlayerSettings:
   metroCertificateIssuer: DefaultCompany
   metroCertificateNotAfter: 00ad650643bed401
   metroApplicationDescription: FYP
-  wsaImages: {}
+  wsaImages:
+    2031632: Assets/Windows10/Square44x44Logo.targetsize-16_altform-unplated.png
+    2031640: Assets/Windows10/Square44x44Logo.targetsize-24_altform-unplated.png
+    2031664: Assets/Windows10/Square44x44Logo.targetsize-48.png
+    2031872: Assets/Windows10/Square44x44Logo.targetsize-256_altform-unplated.png
+    2162788: Assets/Windows10/Square150x150Logo.scale-100.png
+    2162813: Assets/Windows10/Square150x150Logo.scale-125.png
+    2162838: Assets/Windows10/Square150x150Logo.scale-150.png
+    2162888: Assets/Windows10/Square150x150Logo.scale-200.png
+    2163088: 
+    2228324: Assets/Windows10/Square310x310Logo.scale-100.png
+    2228349: Assets/Windows10/Square310x310Logo.scale-125.png
+    2228374: Assets/Windows10/Square310x310Logo.scale-150.png
+    2228424: Assets/Windows10/Square310x310Logo.scale-200.png
   metroTileShortName: HISS
   metroCommandLineArgsFile: 
   metroTileShowName: 0

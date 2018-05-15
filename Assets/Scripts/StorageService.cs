@@ -77,7 +77,7 @@ namespace Assets.Scripts
             currentFile = ""; 
         }
 
-        public void PutObjectBlob(MeshInfo mesh)
+        public void PutObjectToBlob(MeshInfo mesh)
         {
             CurrentInputMesh = mesh;
             string filename = mesh.filename;
@@ -86,6 +86,12 @@ namespace Assets.Scripts
             // This is a lie
             DebugDialog.Instance.PrimaryText = "Mesh Saved Successfully!";
             StartCoroutine(blobService.PutTextBlob(PutObjectCompleted, stringArray, InputContainer, filename));
+        }
+
+        public void PutObjectInfo(MeshInfo mesh)
+        {
+            //https://{databaseaccount}.documents.azure.com/dbs/{db}/colls/{coll}
+
         }
 
         private void PutObjectCompleted(RestResponse obj)
@@ -129,7 +135,7 @@ namespace Assets.Scripts
             Debug.Log("Received blob:" + response.Content.Length);
             string filename = await MeshSaver.SaveStringAsTemporaryMeshAsync(response.Content);
             Debug.Log("Mesh Saved At " + filename);
-            MeshRenderScript.Instance.Filename = filename;
+            ModelViewer.Instance.Filename = filename;
             ViewManager.Instance.InitializeVisualization();
         }
 
