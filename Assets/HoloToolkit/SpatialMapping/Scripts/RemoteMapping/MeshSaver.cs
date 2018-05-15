@@ -75,6 +75,7 @@ namespace HoloToolkit.Unity.SpatialMapping
                     await outputFile.WriteLineAsync("o Object." + o);
                     await outputFile.WriteAsync(MeshToString(theMesh, faceCount));
                     await outputFile.WriteLineAsync("");
+                    Debug.Log("Writing Object" + o);
                 }
             }
 

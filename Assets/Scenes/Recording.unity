@@ -147,7 +147,7 @@ Transform:
   m_Children:
   - {fileID: 437944827}
   m_Father: {fileID: 1907416128}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &23259881
 MonoBehaviour:
@@ -268,6 +268,7 @@ Transform:
   - {fileID: 1984419680}
   - {fileID: 408968346}
   - {fileID: 618478581}
+  - {fileID: 405836687}
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -500,7 +501,7 @@ Transform:
   - {fileID: 296620488}
   - {fileID: 1473709715}
   m_Father: {fileID: 1907416128}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &163573773
 MonoBehaviour:
@@ -1083,7 +1084,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 243894831}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.1, y: 0, z: 0}
+  m_LocalPosition: {x: 0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 170671738}
@@ -1174,42 +1175,42 @@ MonoBehaviour:
     BoolValue: 0
     IntValue: 0
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 1
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 1
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 2
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 2
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 3
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 3
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 4
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 4
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 5
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 5
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
 --- !u!95 &243894835
 Animator:
   serializedVersion: 3
@@ -1701,7 +1702,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 330748678}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0, z: 0}
+  m_LocalPosition: {x: -0.08, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 40481132}
@@ -1728,42 +1729,42 @@ MonoBehaviour:
     BoolValue: 0
     IntValue: 0
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 1
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 1
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 2
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 2
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 3
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 3
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 4
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 4
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 5
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 5
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
 --- !u!95 &330748681
 Animator:
   serializedVersion: 3
@@ -2161,7 +2162,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 376902724}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.2, z: 1.5}
+  m_LocalPosition: {x: 0, y: -0.2, z: 2}
   m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
   m_Children:
   - {fileID: 2105211452}
@@ -2404,12 +2405,12 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 405836686}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 92362479}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &405836688
 MonoBehaviour:
@@ -4843,7 +4844,6 @@ Transform:
   m_Children:
   - {fileID: 982005592}
   - {fileID: 1569750419}
-  - {fileID: 926285127}
   m_Father: {fileID: 618478581}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4912,7 +4912,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 872471795}
+    m_TransformParent: {fileID: 1907416128}
     m_Modifications:
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.x
@@ -4920,7 +4920,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.16499999
+      value: -0.03500001
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4944,11 +4944,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_RootOrder
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_Name
-      value: TextDebugDisplay
+      value: SpatialInfoDisplay
       objectReference: {fileID: 0}
     - target: {fileID: 4000010330146594, guid: bfdc7f60d7205c84f82a4806a5352d60, type: 2}
       propertyPath: m_LocalScale.x
@@ -4999,6 +4999,42 @@ GameObject:
   m_PrefabParentObject: {fileID: 1000013198843976, guid: bfdc7f60d7205c84f82a4806a5352d60,
     type: 2}
   m_PrefabInternal: {fileID: 926285126}
+--- !u!114 &926285130
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926285129}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2be8bd2ebd8277c448d6d81c75517fee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TagalongDistance: 1.75
+  EnforceDistance: 1
+  PositionUpdateSpeed: 10
+  SmoothMotion: 1
+  SmoothingFactor: 0.75
+--- !u!114 &926285131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 926285129}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb69de839bd015f4099b5bd2c45e53e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UseUnscaledTime: 1
+  PositionPerSecond: 30
+  RotationDegreesPerSecond: 720
+  RotationSpeedScaler: 0
+  ScalePerSecond: 5
+  SmoothLerpToTarget: 0
+  SmoothPositionLerpRatio: 0.5
+  SmoothRotationLerpRatio: 0.5
+  SmoothScaleLerpRatio: 0.5
 --- !u!65 &926285132
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5166,7 +5202,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 0.32, y: 0.08027828, z: 0.012825012}
+  m_Size: {x: 0.24, y: 0.08027828, z: 0.012825012}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &945902367
 MonoBehaviour:
@@ -6066,42 +6102,42 @@ MonoBehaviour:
     BoolValue: 0
     IntValue: 0
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 1
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 1
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 2
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 2
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 3
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 3
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 4
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 4
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
   - ButtonState: 5
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 5
     FloatValue: 0
-    InvalidParam: 1
+    InvalidParam: 0
 --- !u!95 &1125603314
 Animator:
   serializedVersion: 3
@@ -7307,7 +7343,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1420372718}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.02, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1553563435}
@@ -7334,42 +7370,42 @@ MonoBehaviour:
     BoolValue: 0
     IntValue: 0
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 1
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 1
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 2
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 2
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 3
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 3
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 4
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 4
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
   - ButtonState: 5
     ParamName: State
     ParamType: 3
     BoolValue: 0
     IntValue: 5
     FloatValue: 0
-    InvalidParam: 0
+    InvalidParam: 1
 --- !u!95 &1420372721
 Animator:
   serializedVersion: 3
@@ -8898,6 +8934,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 926285127}
   - {fileID: 23259880}
   - {fileID: 163573772}
   m_Father: {fileID: 965024128}
@@ -9264,7 +9301,7 @@ Prefab:
     - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
         type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224000012143312124, guid: 86195468488ce7941a7abcbfaffe9455,
         type: 2}

@@ -1,6 +1,8 @@
 ﻿using HoloToolkit.Unity;
 using HoloToolkit.Unity.InputModule;
+using HoloToolkit.Unity.SpatialMapping;
 using System;
+using System.Collections;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.IO;
@@ -21,6 +23,8 @@ namespace Assets.Scripts
         public Material MeshMaterial;
         public Text meshInfoText;
 
+
+        private List<Mesh> testMeshList;
         private string meshStringList;
         private bool _infoUpdated;
         private List<Mesh> meshList;
@@ -59,12 +63,13 @@ namespace Assets.Scripts
             _rotateX = false;
             _rotateY = false;
             meshInfoText.text = "";
+            testMeshList = new List<Mesh>();
         }
 
         // Update is called once per frame
         void Update()
         {
-            Update_Mesh();
+            Update_MeshAsync();
             Rotate_Mesh();
         }
 
@@ -81,7 +86,7 @@ namespace Assets.Scripts
             }
         }
 
-        private void Update_Mesh()
+        private async void Update_MeshAsync()
         {
             if (_infoUpdated )
             {
@@ -98,7 +103,8 @@ namespace Assets.Scripts
             {
                 _filechanged = false;
                 DebugDialog.Instance.PrimaryText = "Generating Mesh...";
-
+                testMeshList.Clear();
+                meshInfoText.text = string.Empty;
                 Component[] previous = MeshHolder.GetComponentsInChildren<MeshRenderer>();
                 foreach (Component comp in previous)
                 {
@@ -106,26 +112,85 @@ namespace Assets.Scripts
                     Destroy(comp.gameObject);
                 }
                 List<string> meshStringList = SplitMesh(Filename);
+                //                const string V = @"o Cube
+                //v 1.000000 -1.000000 -1.000000
+                //v 1.000000 -1.000000 1.000000
+                //v -1.000000 -1.000000 1.000000
+                //v -1.000000 -1.000000 -1.000000
+                //v 1.000000 1.000000 -1.000000
+                //v 0.999999 1.000000 1.000001
+                //v -1.000000 1.000000 1.000000
+                //v -1.000000 1.000000 -1.000000
+                //vt 2.094305 1.396205
+                //vt 1.396205 2.094305
+                //vt 0.698100 1.396205
+                //vt 1.396205 0.698100
+                //vt 5.000000 5.000000
+                //vt 2.792410 5.000000
+                //vt 2.792410 2.792410
+                //vt 5.000000 2.792410
+                //vt 2.792410 2.094305
+                //vt 2.094305 2.792410
+                //vt 0.698100 2.792410
+                //vt 0.000000 2.094305
+                //vt 0.000000 0.698100
+                //vt 0.698100 0.000000
+                //vt 2.792410 0.698100
+                //vt 2.094305 0.000000
+                //f 1/1/1 2/2/2 3/3/3
+                //f 1/1/1 3/3/3 4/4/4
+                //f 5/5/5 8/8/6 7/7/7
+                //f 5/5/5 7/7/7 6/6/8
+                //f 1/1/1 5/5/9 6/6/10
+                //f 1/1/1 6/6/10 2/2/2
+                //f 2/2/2 6/6/11 7/7/12
+                //f 2/2/2 7/7/12 3/3/3
+                //f 3/3/3 7/7/13 8/8/14
+                //f 3/3/3 8/8/14 4/4/4
+                //f 5/5/15 1/1/1 4/4/4
+                //f 5/5/15 4/4/4 8/8/16";
+                //                List<string> meshStringList = new List<string>();
+                //                meshStringList.Add(V) ;
+
                 meshStringList.ForEach(i =>
                 {
-                    Mesh m = MeshLoader.ImportFileAsync(i);
-                    GameObject go = new GameObject("ParentPrefab" + i.Substring(0, 10));
-                    GazeStabilizer stab = go.AddComponent<GazeStabilizer>();
-                    MeshFilter mf = go.AddComponent<MeshFilter>();
-                    //BoxCollider bc = go.AddComponent<BoxCollider>();
-                    //bc.center = Vector3.zero;
-                    go.transform.SetParent(MeshHolder.transform, false);
-                    MeshRenderer mr = go.AddComponent<MeshRenderer>();
-                    mr.material = MeshMaterial;
-                    mr.allowOcclusionWhenDynamic = true;
-                    mr.receiveShadows = true;
-                    mf.mesh = m;
+                    StartCoroutine(BuildSubmesh(i));
                 });
                 Debug.Log("Parent Generated");
                 GazeStabilizer stabalizer = MeshHolder.AddComponent<GazeStabilizer>();
                 DebugDialog.Instance.ClearText();
+                Debug.Log("Mesh List" + testMeshList.Count);
+                string t = await MeshSaver.SaveAsObjAsync("test_mesh_out", testMeshList);
+                Debug.Log(t);
             }
 
+        }
+
+        public IEnumerator BuildSubmesh(string i)
+        {
+            Mesh m;
+            //yield return 
+            yield return (m = MeshLoader.BuildMesh(i));
+            GenerateSubmesh(m, i);
+            testMeshList.Add(m);
+            Debug.Log("Added mesh to list");
+            //Debug.Log("Coroutine started");
+            //Debug.Log("Reached end of the thing");
+        }
+
+        private void GenerateSubmesh(Mesh m, string i)
+        {
+            GameObject go = new GameObject("ParentPrefab" + i.Substring(0, 10));
+            GazeStabilizer stab = go.AddComponent<GazeStabilizer>();
+            MeshFilter mf = go.AddComponent<MeshFilter>();
+            //BoxCollider bc = go.AddComponent<BoxCollider>();
+            //bc.center = Vector3.zero;
+            go.transform.SetParent(MeshHolder.transform, false);
+            MeshRenderer mr = go.AddComponent<MeshRenderer>();
+            mr.material = MeshMaterial;
+            mr.allowOcclusionWhenDynamic = true;
+            mr.receiveShadows = true;
+            mf.mesh = m;
         }
 
         private List<string> SplitMesh(string filePath)
@@ -159,7 +224,6 @@ namespace Assets.Scripts
                 meshInfo = new MeshInfo();
                 foreach (string line in lines)
                 {
-                    Debug.Log(line);
                     string l = line.Trim();
                     if (l == "#" || l == "") continue;
                     string[] words = Regex.Split(l, "\\s");

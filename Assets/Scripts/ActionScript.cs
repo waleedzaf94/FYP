@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using System;
 using System.IO;
 using System.Threading.Tasks;
+using System.Collections;
 
 namespace Assets.Scripts
 {
@@ -14,10 +15,12 @@ namespace Assets.Scripts
         public SpatialUnderstanding spatial;
         private bool _resetSpatialUnderstanding;
         private bool _startScan;
+        private bool _tappedHelp;
 
         private void Start()
         {
             _resetSpatialUnderstanding = false;
+            _tappedHelp = false;
         }
 
         private void Update()
@@ -42,7 +45,7 @@ namespace Assets.Scripts
                 SpatialUnderstanding.Instance.RequestBeginScanning();
                 _startScan = false;
             }
-            Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+            //Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
         }
 
         private void ResetScanner()
@@ -64,7 +67,7 @@ namespace Assets.Scripts
                 DebugDialog.Instance.PrimaryText = "Reset Complete";
                 Debug.Log("Reset Complete");
                 _resetSpatialUnderstanding = false;
-                Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
+                //Debug.Log("Spatial State " + SpatialUnderstanding.Instance.ScanState);
             }
             SpatialUnderstandingState.Instance.MeshSaving = false;
         }
@@ -94,7 +97,7 @@ namespace Assets.Scripts
             }
         }
 
-        public async void TappedSave()
+        public async Task TappedSave()
         {
             if (SpatialUnderstanding.Instance.ScanState == SpatialUnderstanding.ScanStates.Done)
             {
@@ -106,7 +109,7 @@ namespace Assets.Scripts
                 RoomSaver.Instance.fileName = fn;
                 RoomSaver.Instance.anchorStoreName = "mesh_test_anchor";
                 string metadata = RoomSaver.Instance.GetStatsAsString();
-                string localpath = await RoomSaver.Instance.SaveRoomAsync(metadata);
+                string  localpath = await RoomSaver.Instance.SaveRoomAsync(metadata);
                 Debug.Log("File Name: " + localPath);
                 Debug.Log("MeshInfo " + fn);
                 // Prepare file for push to Azure Storage
@@ -146,7 +149,20 @@ namespace Assets.Scripts
 
         public void TappedHelp()
         {
-            DebugDialog.Instance.PrimaryText = "Help Opened";
+            if (!_tappedHelp)
+            {
+                _tappedHelp = true;
+                DebugDialog.Instance.PrimaryText = @"Welcome to HISS. 
+Please select a model from panel to view or press Record to create a new recording.
+Press Record again and scan your room. Wait for Finalize to appear before clicking finalize.
+On complete, click save to upload mesh to server.
+";
+            }
+            else
+            {
+                _tappedHelp = false;
+                DebugDialog.Instance.ClearText();
+            }
         }
 
         public void TappedRecordingView()

@@ -84,10 +84,8 @@ namespace Assets.Scripts
                 
                 roomMeshes.Add(filter.mesh);
             }
-            string fullpath = await MeshSaver.SaveAsObjAsync(fileName, roomMeshes, metadata);
+             return await MeshSaver.SaveAsObjAsync(fileName, roomMeshes, metadata);
             // serialize and save meshes
-            Debug.Log("roomsaver" + fullpath);
-            return fullpath;
         }
 
         private void AttachingAnchor_OnTrackingChanged(UnityEngine.XR.WSA.WorldAnchor self, bool located)
